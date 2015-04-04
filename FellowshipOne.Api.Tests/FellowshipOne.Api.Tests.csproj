@@ -44,8 +44,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\FellowshipOne.Api\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Restify">
-      <HintPath>..\FellowshipOne.Api\packages\Restify.2.0.0.2\lib\Restify.dll</HintPath>
+    <Reference Include="Restify, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Restify.2.0.0.3\lib\Restify.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\FellowshipOne.Api\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
@@ -71,6 +72,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Activities\ActivitiesTest.cs" />
+    <Compile Include="Activities\MinistryTests.cs" />
     <Compile Include="Authorize\FristParty.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Giving\BatchesTest.cs" />

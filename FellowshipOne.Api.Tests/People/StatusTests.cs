@@ -9,13 +9,13 @@ namespace FellowshipOne.Api.Tests.People {
 
         [Test]
         public void status_list_all() {
-            var statuses = Client.PeopleRealm.Statuses.List();
+            var statuses = RestClient.PeopleRealm.Statuses.List();
             statuses.Count.ShouldBeGreaterThan(0);
         }
 
         [Test]
         public void status_list_get_sub_statuses() {
-            var statuses = Client.PeopleRealm.Statuses.List();
+            var statuses = RestClient.PeopleRealm.Statuses.List();
             var subStatuses = statuses.First().SubStatuses;
 
             subStatuses.Count.ShouldBeGreaterThan(0);

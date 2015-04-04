@@ -4,26 +4,26 @@ using FellowshipOne.Api.People.QueryObject;
 using System.Configuration;
 
 namespace FellowshipOne.Api.Tests {
-    [TestFixture]
     public class Base {
-        public FellowshipOne.Api.RestClient Client;
-        public F1OAuthTicket Ticket;
+        internal RestClient RestClient;
+        internal F1OAuthTicket Ticket;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void Setup() {
-            //Ticket = FellowshipOne.Api.RestClient.Authorize(new F1OAuthTicket {
-            //    ConsumerKey = ConfigurationManager.AppSettings["Consumer.Key"],
-            //    ConsumerSecret = ConfigurationManager.AppSettings["Consumer.Secret"],
-            //    ChurchCode = ConfigurationManager.AppSettings["Church.Code"]
-            //}, ConfigurationManager.AppSettings["Username"], ConfigurationManager.AppSettings["Password"], LoginType.PortalUser, true);
+            this.Ticket = new F1OAuthTicket {
+                ConsumerKey = ConfigurationManager.AppSettings["Consumer.Key"],
+                ConsumerSecret =  ConfigurationManager.AppSettings["Consumer.Secret"],
+                ChurchCode = ConfigurationManager.AppSettings["Church.Code"],
+                AccessToken = "",
+                AccessTokenSecret = ""
+            };
 
-            //Client = new RestClient(Ticket, false);
-        }
+            RestClient = new RestClient(this.Ticket, true);
 
-        [TearDown]
-        public void TearDown() {
-            Ticket = null;
-            Client = null;
+            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], ConfigurationManager.AppSettings["API.Url"], "PortalUser/AccessToken");
+
+            this.Ticket.AccessToken = oauth.AccessToken;
+            this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;
         }
     }
 }

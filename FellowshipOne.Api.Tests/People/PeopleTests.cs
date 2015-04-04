@@ -8,7 +8,7 @@ namespace FellowshipOne.Api.Tests.People {
 
         [Test]
         public void people_get_by_url() {
-            var person = Client.PeopleRealm.People.GetByUrl(Ticket.PersonURL);
+            var person = RestClient.PeopleRealm.People.GetByUrl(Ticket.PersonURL);
             person.ShouldNotBe(null);
         }
 
@@ -18,7 +18,7 @@ namespace FellowshipOne.Api.Tests.People {
             qo.Name = "sm";
             qo.RecordsPerPage = 5;
 
-            var people = Client.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
+            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
             people.ShouldNotBe(null);
             people.Count.ShouldBeGreaterThan(0);
         }
@@ -31,7 +31,7 @@ namespace FellowshipOne.Api.Tests.People {
             string requestXml = string.Empty;
 
             try {
-                person = Client.PeopleRealm.People.Create(person, out requestXml);
+                person = RestClient.PeopleRealm.People.Create(person, out requestXml);
             }
             catch (System.Exception e) {
             }
@@ -46,13 +46,13 @@ namespace FellowshipOne.Api.Tests.People {
             qo.Name = "chad meyer";
             qo.RecordsPerPage = 5;
 
-            var people = Client.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
+            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
             var person = people[0];
             person.Status.SubStatuses = null;
             person.Addresses = null;
             person.Communications = null;
 
-            Client.PeopleRealm.People.Update(person, person.ID.ToString());
+            RestClient.PeopleRealm.People.Update(person, person.ID.ToString());
         }
     }
 }
