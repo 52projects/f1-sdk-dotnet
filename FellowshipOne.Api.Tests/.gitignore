@@ -1,0 +1,2 @@
+# Ignore the app config for the test project because it will hold the necessary data
+[Cc]redentials.config

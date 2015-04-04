@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FellowshipOne.Api", "FellowshipOne.Api\FellowshipOne.Api.csproj", "{B2EA4E55-179E-428B-AFE7-D6E36B78E090}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C5475A00-B639-43A7-9DF4-0E5DDDD27F71}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FellowshipOne.Api.Tests", "FellowshipOne.Api.Tests\FellowshipOne.Api.Tests.csproj", "{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
