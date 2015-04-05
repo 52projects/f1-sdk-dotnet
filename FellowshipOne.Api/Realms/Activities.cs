@@ -29,6 +29,36 @@ namespace FellowshipOne.Api.Realms {
                 return _activities;
             }
         }
+
+        private FellowshipOne.Api.Activities.Sets.Schedules _schedules;
+        public FellowshipOne.Api.Activities.Sets.Schedules Schedules {
+            get {
+                if (_schedules == null) {
+                    _schedules = new FellowshipOne.Api.Activities.Sets.Schedules(_ticket, _baseUrl);
+                }
+                return _schedules;
+            }
+        }
+
+        private FellowshipOne.Api.Activities.Sets.Rosters _rosters;
+        public FellowshipOne.Api.Activities.Sets.Rosters Rosters {
+            get {
+                if (_rosters == null) {
+                    _rosters = new FellowshipOne.Api.Activities.Sets.Rosters(_ticket, _baseUrl);
+                }
+                return _rosters;
+            }
+        }
+
+        private FellowshipOne.Api.Activities.Sets.RosterFolders _rosterFolders;
+        public FellowshipOne.Api.Activities.Sets.RosterFolders RosterFolders {
+            get {
+                if (_rosterFolders == null) {
+                    _rosterFolders = new FellowshipOne.Api.Activities.Sets.RosterFolders(_ticket, _baseUrl);
+                }
+                return _rosterFolders;
+            }
+        }
         #endregion Properties
 
         #region Constructor

@@ -74,6 +74,9 @@
   <ItemGroup>
     <Compile Include="Activities\ActivitiesTest.cs" />
     <Compile Include="Activities\MinistryTests.cs" />
+    <Compile Include="Activities\RosterFoldersTests.cs" />
+    <Compile Include="Activities\RostersTests.cs" />
+    <Compile Include="Activities\SchedulesTests.cs" />
     <Compile Include="Authorize\FristParty.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Giving\BatchesTest.cs" />

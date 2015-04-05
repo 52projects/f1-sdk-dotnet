@@ -59,6 +59,27 @@ namespace FellowshipOne.Api {
             return collection;
         }
 
+        public F1Collection<T> FindAll(string parentID, int? page = null) {
+            var collection = new F1Collection<T>();
+
+            if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
+                throw new NotImplementedException("The property GetChildListUrl has no value on the ApiSet.");
+            }
+
+            var request = CreateRestRequest(Method.GET, string.Format(GetChildListUrl, parentID));
+
+            if (page.HasValue) {
+                request.AddParameter("page", page.Value);
+            }
+            
+            var item = ExecuteListRequest(request);
+
+            this.PopulateHeaderInformation(collection, item);
+            collection.Items.AddRange(item.Data);
+
+            return collection;
+        }
+
         public F1Collection<T> FindBy(BaseQO qo) {
             var collection = new F1Collection<T>();
 
@@ -67,6 +88,27 @@ namespace FellowshipOne.Api {
             }
 
             var request = CreateRestRequest(Method.GET, SearchUrl);
+
+            foreach (var pair in qo.ToDictionary()) {
+                request.AddParameter(pair.Key, pair.Value);
+            }
+
+            var item = ExecuteListRequest(request);
+
+            this.PopulateHeaderInformation(collection, item);
+            collection.Items.AddRange(item.Data);
+
+            return collection;
+        }
+
+        public F1Collection<T> FindBy(string parentID, BaseQO qo) {
+            var collection = new F1Collection<T>();
+
+            if (string.IsNullOrWhiteSpace(SearchUrl)) {
+                throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
+            }
+
+            var request = CreateRestRequest(Method.GET, string.Format(SearchUrl, parentID));
 
             foreach (var pair in qo.ToDictionary()) {
                 request.AddParameter(pair.Key, pair.Value);
