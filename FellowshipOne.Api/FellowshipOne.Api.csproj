@@ -36,8 +36,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Restify, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Restify">
       <HintPath>..\packages\Restify.2.0.0.3\lib\Restify.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
@@ -54,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\Model\Activity.cs" />
+    <Compile Include="Activities\Model\Assignment.cs" />
+    <Compile Include="Activities\Model\Attendance.cs" />
+    <Compile Include="Activities\Model\Instance.cs" />
     <Compile Include="Activities\Model\Ministry.cs" />
     <Compile Include="Activities\Model\Roster.cs" />
     <Compile Include="Activities\Model\RosterFolder.cs" />
@@ -63,6 +65,9 @@
     <Compile Include="Activities\QueryObject\RosterQO.cs" />
     <Compile Include="Activities\QueryObject\ScheduleQO.cs" />
     <Compile Include="Activities\Sets\Activities.cs" />
+    <Compile Include="Activities\Sets\Assignments.cs" />
+    <Compile Include="Activities\Sets\Attendances.cs" />
+    <Compile Include="Activities\Sets\Instances.cs" />
     <Compile Include="Activities\Sets\Ministries.cs" />
     <Compile Include="Activities\Sets\RosterFolders.cs" />
     <Compile Include="Activities\Sets\Rosters.cs" />

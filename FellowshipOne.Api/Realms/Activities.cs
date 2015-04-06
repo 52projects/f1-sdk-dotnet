@@ -59,6 +59,16 @@ namespace FellowshipOne.Api.Realms {
                 return _rosterFolders;
             }
         }
+
+        private FellowshipOne.Api.Activities.Sets.Assignments _assignments;
+        public FellowshipOne.Api.Activities.Sets.Assignments Assignments {
+            get {
+                if (_assignments == null) {
+                    _assignments = new FellowshipOne.Api.Activities.Sets.Assignments(_ticket, _baseUrl);
+                }
+                return _assignments;
+            }
+        }
         #endregion Properties
 
         #region Constructor
