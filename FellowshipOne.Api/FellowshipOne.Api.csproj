@@ -54,15 +54,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\Model\Activity.cs" />
+    <Compile Include="Activities\Model\ActivityType.cs" />
+    <Compile Include="Activities\Model\Instance.cs" />
     <Compile Include="Activities\Model\Ministry.cs" />
     <Compile Include="Activities\Model\Roster.cs" />
     <Compile Include="Activities\Model\RosterFolder.cs" />
     <Compile Include="Activities\Model\Schedule.cs" />
     <Compile Include="Activities\QueryObject\ActivityQO.cs" />
+    <Compile Include="Activities\QueryObject\InstanceQO.cs" />
     <Compile Include="Activities\QueryObject\RosterFolderQO.cs" />
     <Compile Include="Activities\QueryObject\RosterQO.cs" />
     <Compile Include="Activities\QueryObject\ScheduleQO.cs" />
     <Compile Include="Activities\Sets\Activities.cs" />
+    <Compile Include="Activities\Sets\ActivityTypes.cs" />
+    <Compile Include="Activities\Sets\Instances.cs" />
     <Compile Include="Activities\Sets\Ministries.cs" />
     <Compile Include="Activities\Sets\RosterFolders.cs" />
     <Compile Include="Activities\Sets\Rosters.cs" />
