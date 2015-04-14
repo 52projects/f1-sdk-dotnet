@@ -7,6 +7,7 @@ namespace FellowshipOne.Api.Tests {
     public class Base {
         internal RestClient RestClient;
         internal F1OAuthTicket Ticket;
+        internal int _testIndividualID;
 
         [TestFixtureSetUp]
         public void Setup() {
@@ -24,6 +25,8 @@ namespace FellowshipOne.Api.Tests {
 
             this.Ticket.AccessToken = oauth.AccessToken;
             this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;
+
+            _testIndividualID = int.Parse(ConfigurationManager.AppSettings["Test.Individual.ID"]);
         }
     }
 }

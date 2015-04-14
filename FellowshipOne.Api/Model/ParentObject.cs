@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace FellowshipOne.Api.Model {
     [Serializable]
@@ -17,6 +18,7 @@ namespace FellowshipOne.Api.Model {
     public class ParentNamedObject : APIModel {
         private string _name = string.Empty;
         [XmlElement("name")]
+        [JsonProperty("uri")]
         public string Name {
             get { return _name; }
             set { _name = value; }
