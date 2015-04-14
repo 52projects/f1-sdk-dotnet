@@ -22,7 +22,7 @@ namespace FellowshipOne.Api {
             : base(requestHeaders, baseUrl, contentType) {
         }
 
-        public F1Collection<T> FindAll(int? page = null) {
+        public virtual F1Collection<T> FindAll(int? page = null) {
             var collection = new F1Collection<T>();
 
             if (string.IsNullOrWhiteSpace(ListUrl)) {
@@ -43,7 +43,7 @@ namespace FellowshipOne.Api {
             return collection;
         }
 
-        public F1Collection<T> FindAll(string parentID) {
+        public virtual F1Collection<T> FindAll(string parentID) {
             var collection = new F1Collection<T>();
 
             if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
@@ -59,7 +59,7 @@ namespace FellowshipOne.Api {
             return collection;
         }
 
-        public F1Collection<T> FindAll(string parentID, int? page = null) {
+        public virtual F1Collection<T> FindAll(string parentID, int? page = null) {
             var collection = new F1Collection<T>();
 
             if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
@@ -80,7 +80,7 @@ namespace FellowshipOne.Api {
             return collection;
         }
 
-        public F1Collection<T> FindBy(BaseQO qo) {
+        public virtual F1Collection<T> FindBy(BaseQO qo) {
             var collection = new F1Collection<T>();
 
             if (string.IsNullOrWhiteSpace(SearchUrl)) {
@@ -101,7 +101,7 @@ namespace FellowshipOne.Api {
             return collection;
         }
 
-        public F1Collection<T> FindBy(string parentID, BaseQO qo) {
+        public virtual F1Collection<T> FindBy(string parentID, BaseQO qo) {
             var collection = new F1Collection<T>();
 
             if (string.IsNullOrWhiteSpace(SearchUrl)) {
