@@ -31,9 +31,11 @@ namespace FellowshipOne.Api.Activities.Sets {
             return Create(entity, out requestXml);
         }
 
-        public Model.Assignment Delete(int activityID, int assignmentID) {
+        public bool Delete(int activityID, int assignmentID) {
             _editUrl = string.Format(GET_URL, activityID, assignmentID);
-            bas
+            //bas
+
+            return false;
         }
     }
 }
