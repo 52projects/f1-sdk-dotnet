@@ -13,6 +13,12 @@ namespace FellowshipOne.Api.QueryObject {
         [QO("recordsPerPage")]
         public int? RecordsPerPage { get; set; }
 
+        /// <summary>
+        /// Fellowship One changed the query variable from recordsPerPage on the activities realm
+        /// </summary>
+        [QO("pagesize")]
+        public int? PageSize { get; set; }
+
         internal string ToQueryString() { //non-encoded query string
             StringBuilder sb = new StringBuilder();
 

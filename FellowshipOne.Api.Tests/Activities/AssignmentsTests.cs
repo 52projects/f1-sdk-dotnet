@@ -66,7 +66,7 @@ namespace FellowshipOne.Api.Tests.Activities {
             var result = RestClient.ActivitiesRealm.Assignments.Create(activityID, assigment);
             result.ID.Value.ShouldBeGreaterThan(0);
 
-            RestClient.ActivitiesRealm.Assignments.Delete()
+            RestClient.ActivitiesRealm.Assignments.Delete(activityID, result.ID.Value);
         }
     }
 }
