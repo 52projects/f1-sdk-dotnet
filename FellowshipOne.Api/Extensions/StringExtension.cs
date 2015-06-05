@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System {
+namespace FellowshipOne.Api.Extensions {
     public static class StringExtension {
         public static string HtmlEncode(this string s) {
             return System.Web.HttpUtility.HtmlEncode(s);

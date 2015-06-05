@@ -60,5 +60,11 @@ namespace FellowshipOne.Api.People.QueryObject {
 
         [QO("id")]
         public int? IndividualID { get; set; }
+
+        [QO("checkinTagCode")]
+        public string CheckinTagCode { get; set; }
+
+        [QO("barCode")]
+        public string BarCode { get; set; }
     }
 }
