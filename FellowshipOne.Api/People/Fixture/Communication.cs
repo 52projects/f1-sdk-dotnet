@@ -14,6 +14,7 @@ namespace FellowshipOne.Api.People.Fixture {
         private int _communicationTypeID = 1;
         private string _communicationValue = "1231231234";
         private string _communicationTypeName = "Home Phone";
+        private string _generalTypeName = "Telephone";
 
         public static CommunicationBuilder Communication() {
             return new CommunicationBuilder();
@@ -50,13 +51,19 @@ namespace FellowshipOne.Api.People.Fixture {
             return this;
         }
 
+        public CommunicationBuilder WithCommunicationGeneralTypeName(string name) {
+            _generalTypeName = name;
+            return this;
+        }
+
         public Communication Build() {
             return new Model.Communication {
                 ID = _id,
                 Household = new ParentObject { ID = _householdID },
                 Person = new ParentObject { ID = _personID },
                 CommunicationType = new ParentNamedObject { ID = _communicationTypeID, Name = _communicationTypeName },
-                CommunicationValue = _communicationValue
+                CommunicationValue = _communicationValue,
+                CommunicationGeneralType = _generalTypeName
             };
         }
     }
