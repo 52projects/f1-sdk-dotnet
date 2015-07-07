@@ -20,8 +20,8 @@ namespace FellowshipOne.Api.Activities.Model {
         public int? DefaultCapacity { get; set; }
         public DateTime? StartAgeDate { get; set; }
         public DateTime? EndAgeDate { get; set; }
-        public DateTime? StartAgeRange { get; set; }
-        public DateTime? EndAgeRange { get; set; }
+        public int? StartAgeRange { get; set; }
+        public int? EndAgeRange { get; set; }
         public int? DefaultAge { get; set; }
         public int? ScheduleID { get; set; }
         public bool? PagerEnabled { get; set; }
