@@ -89,6 +89,16 @@ namespace FellowshipOne.Api.Realms {
                 return _assignments;
             }
         }
+
+        private FellowshipOne.Api.Activities.Sets.Rooms _rooms;
+        public FellowshipOne.Api.Activities.Sets.Rooms Rooms {
+            get {
+                if (_rooms == null) {
+                    _rooms = new FellowshipOne.Api.Activities.Sets.Rooms(_ticket, _baseUrl);
+                }
+                return _rooms;
+            }
+        }
         #endregion Properties
 
         #region Constructor

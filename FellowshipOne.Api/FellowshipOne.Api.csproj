@@ -60,6 +60,7 @@
     <Compile Include="Activities\Model\Assignment.cs" />
     <Compile Include="Activities\Model\Instance.cs" />
     <Compile Include="Activities\Model\Ministry.cs" />
+    <Compile Include="Activities\Model\Room.cs" />
     <Compile Include="Activities\Model\Roster.cs" />
     <Compile Include="Activities\Model\RosterFolder.cs" />
     <Compile Include="Activities\Model\Schedule.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Activities\Sets\Assignments.cs" />
     <Compile Include="Activities\Sets\Instances.cs" />
     <Compile Include="Activities\Sets\Ministries.cs" />
+    <Compile Include="Activities\Sets\Rooms.cs" />
     <Compile Include="Activities\Sets\RosterFolders.cs" />
     <Compile Include="Activities\Sets\Rosters.cs" />
     <Compile Include="Activities\Sets\Schedules.cs" />
