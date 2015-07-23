@@ -25,6 +25,7 @@ namespace FellowshipOne.Api.Activities.Model {
         public int? ScheduleID { get; set; }
         public bool? PagerEnabled { get; set; }
         public bool? IsClosed { get; set; }
+        public string AgeRangeType { get; set; }
 
         [JsonProperty("room")]
         public ParentObject Room { get; set; }
