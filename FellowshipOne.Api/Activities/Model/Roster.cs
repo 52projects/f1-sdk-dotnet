@@ -2,7 +2,6 @@
 using System;
 using FellowshipOne.Api.Model;
 using Newtonsoft.Json;
-using FellowshipOne.Api.Model;
 
 
 namespace FellowshipOne.Api.Activities.Model {
