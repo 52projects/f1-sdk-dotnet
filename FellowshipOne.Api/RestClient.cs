@@ -3,7 +3,6 @@ using System.Net;
 using FellowshipOne.Api.Model;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Contrib;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ using System.Xml.Serialization;
 using Restify;
 using System.Security;
 using System.Runtime.InteropServices;
+using RestSharp.Extensions.MonoHttp;
 
 namespace FellowshipOne.Api {
     public class RestClient : Restify.Client {

@@ -8,12 +8,11 @@ using System.Xml;
 using System.Xml.Serialization;
 
 namespace FellowshipOne.Api.People.Model {
-    [Serializable]
     [XmlRoot("attribute")]
     public partial class PersonAttribute : APIModel {
-
         #region Constructor
         public PersonAttribute() {
+            this.AttributeGroup = new PersonAttributeGroup();
         }
         #endregion Constructor
 
@@ -36,7 +35,7 @@ namespace FellowshipOne.Api.People.Model {
                     }
                 }
 
-                return _startDateString; 
+                return _startDateString;
             }
             set {
                 if (value != null) {
@@ -207,13 +206,19 @@ namespace FellowshipOne.Api.People.Model {
 
     [XmlRoot("person")]
     public class PersonAttributePerson : APIModel {
+        public PersonAttributePerson() {
+
+        }
     }
 
     [XmlRoot("attributeGroup")]
     public class PersonAttributeGroup : APIModel {
+        public PersonAttributeGroup() {
+
+        }
         private string _name = string.Empty;
         [XmlElement("name")]
-        public string Comment {
+        public string name {
             get {
                 return _name;
             }
@@ -224,5 +229,15 @@ namespace FellowshipOne.Api.People.Model {
 
         [XmlElement("attribute")]
         public ParentNamedObject Attribute { get; set; }
+    }
+
+    [Serializable]
+    [XmlRoot("attributes")]
+    public class PersonAttributeCollection {
+        public PersonAttributeCollection() {
+
+        }
+        [XmlElement("attribute")]
+        public PersonAttribute[] Attributes { get; set; }
     }
 }
