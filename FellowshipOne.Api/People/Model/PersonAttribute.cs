@@ -235,9 +235,9 @@ namespace FellowshipOne.Api.People.Model {
     [XmlRoot("attributes")]
     public class PersonAttributeCollection {
         public PersonAttributeCollection() {
-
+            this.Attributes = new List<PersonAttribute>();
         }
         [XmlElement("attribute")]
-        public PersonAttribute[] Attributes { get; set; }
+        public List<PersonAttribute> Attributes { get; set; }
     }
 }
