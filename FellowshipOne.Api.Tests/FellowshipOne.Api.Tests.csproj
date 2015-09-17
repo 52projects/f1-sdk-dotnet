@@ -44,11 +44,13 @@
     <Reference Include="nunit.framework">
       <HintPath>..\FellowshipOne.Api\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Restify">
-      <HintPath>..\packages\Restify.2.0.0.5\lib\Restify.dll</HintPath>
+    <Reference Include="Restify, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Restify.2.0.0.6\lib\Restify.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\packages\Shouldly.2.5.0\lib\net40\Shouldly.dll</HintPath>
