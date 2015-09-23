@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FiftytwoProjects.Restify, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\focus\packages\FiftytwoProjects.Restify.1.1.33\lib\net40\FiftytwoProjects.Restify.dll</HintPath>
+      <HintPath>..\packages\FiftytwoProjects.Restify.1.1.33\lib\net40\FiftytwoProjects.Restify.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
