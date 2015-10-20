@@ -90,6 +90,16 @@ namespace FellowshipOne.Api.Realms {
             }
         }
 
+        private FellowshipOne.Api.Activities.Sets.Attendance _attendance;
+        public FellowshipOne.Api.Activities.Sets.Attendance Attendance {
+            get {
+                if (_attendance == null) {
+                    _attendance = new FellowshipOne.Api.Activities.Sets.Attendance(_ticket, _baseUrl);
+                }
+                return _attendance;
+            }
+        }
+
         private FellowshipOne.Api.Activities.Sets.Rooms _rooms;
         public FellowshipOne.Api.Activities.Sets.Rooms Rooms {
             get {
