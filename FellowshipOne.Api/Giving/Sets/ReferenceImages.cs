@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Restify;
+
 using RestSharp;
 
 namespace FellowshipOne.Api.Giving.Sets {

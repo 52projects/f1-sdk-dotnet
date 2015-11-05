@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FellowshipOne.Api.Model;
-using Restify;
+
 using RestSharp;
-using FellowshipOne.Api.QueryObject;
+
 
 namespace FellowshipOne.Api {
-    public abstract class ApiSet<T> : Restify.ApiSet<T> where T : new() {
+    public abstract class ApiSet<T> : BaseApiSet<T> where T : new() {
         public ApiSet(string baseUrl, ContentType contentType)
             : base(baseUrl, contentType) {
         }

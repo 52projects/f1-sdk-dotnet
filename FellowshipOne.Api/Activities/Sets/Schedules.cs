@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 
 namespace FellowshipOne.Api.Activities.Sets {
     public class Schedules : ApiSet<Model.Schedule> {

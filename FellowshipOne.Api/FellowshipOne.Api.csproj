@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FiftytwoProjects.Restify, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FiftytwoProjects.Restify.1.1.33\lib\net40\FiftytwoProjects.Restify.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -80,7 +76,10 @@
     <Compile Include="Activities\Sets\RosterFolders.cs" />
     <Compile Include="Activities\Sets\Rosters.cs" />
     <Compile Include="Activities\Sets\Schedules.cs" />
-    <Compile Include="ApiSet.cs" />
+    <Compile Include="Bases\BaseClient.cs" />
+    <Compile Include="Bases\OAuthTicket.cs" />
+    <Compile Include="Sets\ApiSet.cs" />
+    <Compile Include="Attributes\QOAttribute.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\BaseExcpetion.cs" />
     <Compile Include="Exceptions\PropertyNotAllowedException.cs" />
@@ -158,12 +157,13 @@
     <Compile Include="People\Sets\PeopleAttributes.cs" />
     <Compile Include="People\Sets\Statuses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryObject\BaseQO.cs" />
+    <Compile Include="Bases\BaseQO.cs" />
     <Compile Include="Realms\Activities.cs" />
     <Compile Include="Realms\Giving.cs" />
     <Compile Include="Realms\Groups.cs" />
     <Compile Include="Realms\Person.cs" />
     <Compile Include="RestClient.cs" />
+    <Compile Include="Bases\BaseApiSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Activities\Enum\" />

@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 
 namespace FellowshipOne.Api.People.Sets {
     public class Addresses : ApiSet<Model.Address> {

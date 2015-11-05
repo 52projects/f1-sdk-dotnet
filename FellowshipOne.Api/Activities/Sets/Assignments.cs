@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 
 namespace FellowshipOne.Api.Activities.Sets {
     public class Assignments : ApiSet<Model.Assignment> {

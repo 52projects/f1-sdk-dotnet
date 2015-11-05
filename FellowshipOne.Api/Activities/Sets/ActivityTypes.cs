@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 namespace FellowshipOne.Api.Activities.Sets {
     public class ActivityTypes : ApiSet<Model.ActivityType> {
         private readonly string _baseUrl = string.Empty;

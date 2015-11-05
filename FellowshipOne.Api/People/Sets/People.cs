@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 using System.IO;
 
 namespace FellowshipOne.Api.People.Sets {

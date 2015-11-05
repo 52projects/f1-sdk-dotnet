@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Restify.Attributes;
+using FellowshipOne.Api.Attributes;
 
-namespace FellowshipOne.Api.QueryObject {
-    public abstract class BaseQO : Restify.QueryObject {
+namespace FellowshipOne.Api {
+    public abstract class BaseQO {
         [QO("page")]
         public int? PageNumber { get; set; }
 

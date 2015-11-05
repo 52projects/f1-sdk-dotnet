@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 
 namespace FellowshipOne.Api.Activities.Sets {
     public class Rosters : ApiSet<Model.Roster> {

@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 
 namespace FellowshipOne.Api.Giving.Sets {
     public class Funds : ApiSet<Model.Fund> {

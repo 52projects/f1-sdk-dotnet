@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FellowshipOne.Api.Giving.Model;
-using Restify;
+
 using RestSharp;
 
 namespace FellowshipOne.Api.Giving.Sets {

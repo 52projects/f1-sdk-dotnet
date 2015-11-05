@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Restify;
+
 
 namespace FellowshipOne.Api.Giving.Sets {
     public class RDCBatches : ApiSet<Model.RDCBatch> {

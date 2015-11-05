@@ -1,5 +1,5 @@
-﻿using FellowshipOne.Api.QueryObject;
-using Restify.Attributes;
+﻿
+using FellowshipOne.Api.Attributes;
 using System;
 
 namespace FellowshipOne.Api.Activities.QueryObject {

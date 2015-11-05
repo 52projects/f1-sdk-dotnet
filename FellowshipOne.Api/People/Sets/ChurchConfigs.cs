@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
 using FellowshipOne.Api.Model;
-using Restify;
+
 using FellowshipOne.Api.People.Model;
 
 namespace FellowshipOne.Api.People.Sets {

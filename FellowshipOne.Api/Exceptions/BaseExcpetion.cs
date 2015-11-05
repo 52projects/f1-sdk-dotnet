@@ -17,9 +17,9 @@ namespace FellowshipOne.Api.Exceptions {
         #endregion Properties
     }
 
-    public class APIAccessException : BaseException {
-        public APIAccessException() { }
-        public APIAccessException(string message) : base(message) { }
-        public APIAccessException(string message, Exception inner) : base(message, inner) { }
+    public class ApiAccessException : BaseException {
+        public ApiAccessException() { }
+        public ApiAccessException(string message) : base(message) { }
+        public ApiAccessException(string message, Exception inner) : base(message, inner) { }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Restify;
+﻿
 using RestSharp;
 using System.Collections.Generic;
 using FellowshipOne.Api.People.Model;
