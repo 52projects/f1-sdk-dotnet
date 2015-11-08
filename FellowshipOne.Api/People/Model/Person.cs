@@ -469,6 +469,86 @@ namespace FellowshipOne.Api.People.Model {
         [XmlElement("communications")]
         public List<Communication> Communications { get; set; }
 
+        private string _cellPhone = null;
+        [XmlIgnore]
+        public string CellPhone {
+            get {
+                if (_cellPhone == null && this.Communications != null && this.Communications.Count > 0) {
+                    var comm = this.Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)FellowshipOne.Api.People.Enum.CommunicationTypes.Telephone.MobilePhone);
+
+                    if (comm != null) {
+                        _cellPhone = comm.CommunicationValue;
+                    }
+                }
+
+                return _cellPhone;
+            }
+        }
+
+        private string _homePhone = null;
+        [XmlIgnore]
+        public string HomePhone {
+            get {
+                if (_homePhone == null && this.Communications != null && this.Communications.Count > 0) {
+                    var comm = this.Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)FellowshipOne.Api.People.Enum.CommunicationTypes.Telephone.HomePhone);
+
+                    if (comm != null) {
+                        _homePhone = comm.CommunicationValue;
+                    }
+                }
+
+                return _homePhone;
+            }
+        }
+
+        private string _workPhone = null;
+        [XmlIgnore]
+        public string WorkPhone {
+            get {
+                if (_workPhone == null && this.Communications != null && this.Communications.Count > 0) {
+                    var comm = this.Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)FellowshipOne.Api.People.Enum.CommunicationTypes.Telephone.WorkPhone);
+
+                    if (comm != null) {
+                        _workPhone = comm.CommunicationValue;
+                    }
+                }
+
+                return _workPhone;
+            }
+        }
+
+        private string _emergencyPhone = null;
+        [XmlIgnore]
+        public string EmergencyPhone {
+            get {
+                if (_emergencyPhone == null && this.Communications != null && this.Communications.Count > 0) {
+                    var comm = this.Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)FellowshipOne.Api.People.Enum.CommunicationTypes.Telephone.EmergencyPhone);
+
+                    if (comm != null) {
+                        _emergencyPhone = comm.CommunicationValue;
+                    }
+                }
+
+                return _emergencyPhone;
+            }
+        }
+
+        private string _email = null;
+        [XmlIgnore]
+        public string Email {
+            get {
+                if (_email == null && this.Communications != null && this.Communications.Count > 0) {
+                    var comm = this.Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)FellowshipOne.Api.People.Enum.CommunicationTypes.Email.Email);
+
+                    if (comm != null) {
+                        _email = comm.CommunicationValue;
+                    }
+                }
+
+                return _email;
+            }
+        }
+
         #endregion Public Properties
     }
 

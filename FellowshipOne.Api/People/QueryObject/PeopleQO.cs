@@ -8,6 +8,10 @@ using FellowshipOne.Api.Attributes;
 
 namespace FellowshipOne.Api.People.QueryObject {
     public class PeopleQO : BaseQO {
+        public PeopleQO() {
+            this.IndividualIDs = new List<string>();
+        }
+
         [QO("searchFor")]
         public string Name { get; set; }
 
@@ -59,7 +63,20 @@ namespace FellowshipOne.Api.People.QueryObject {
         public DateTime? DateOfBirth { get; set; }
 
         [QO("id")]
-        public int? IndividualID { get; set; }
+        public string IndividualID {
+            get {
+                if (this.IndividualIDs.Count > 0) {
+                    return string.Join(",", this.IndividualIDs.ToArray());
+                }
+                else {
+                    return null;
+                }
+            }
+            set {
+                this.IndividualIDs.RemoveRange(0, this.IndividualIDs.Count);
+                this.IndividualIDs.Add(value);
+            }
+        }
 
         [QO("checkinTagCode")]
         public string CheckinTagCode { get; set; }
@@ -68,6 +85,11 @@ namespace FellowshipOne.Api.People.QueryObject {
         public string BarCode { get; set; }
 
         [QO("hsdid")]
-        public int? HouseholdID { get; set; }
+        public int? HouseholdID {
+            get; set;
+        }
+
+        [QOIgnore]
+        public List<string> IndividualIDs { get; set; }
     }
 }
