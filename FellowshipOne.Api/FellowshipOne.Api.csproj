@@ -78,6 +78,8 @@
     <Compile Include="Activities\Sets\Schedules.cs" />
     <Compile Include="Bases\BaseClient.cs" />
     <Compile Include="Bases\OAuthTicket.cs" />
+    <Compile Include="People\Model\School.cs" />
+    <Compile Include="People\Sets\Schools.cs" />
     <Compile Include="Sets\ApiSet.cs" />
     <Compile Include="Attributes\QOAttribute.cs" />
     <Compile Include="Constants.cs" />

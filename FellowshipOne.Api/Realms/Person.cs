@@ -94,6 +94,16 @@ namespace FellowshipOne.Api.Realms {
             }
         }
 
+        private FellowshipOne.Api.People.Sets.Schools _schools;
+        public FellowshipOne.Api.People.Sets.Schools Schools {
+            get {
+                if (_schools == null) {
+                    _schools = new People.Sets.Schools(_ticket, _baseUrl);
+                }
+                return _schools;
+            }
+        }
+
         private FellowshipOne.Api.People.Sets.ChurchConfigs _churchConfigs;
         public FellowshipOne.Api.People.Sets.ChurchConfigs ChurchConfigs {
             get {

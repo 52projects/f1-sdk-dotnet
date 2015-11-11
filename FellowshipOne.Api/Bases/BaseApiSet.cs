@@ -433,7 +433,7 @@ namespace FellowshipOne.Api {
             }
             var response = client.Execute<T>(request);
 
-            if ((int)response.StatusCode > 400) {
+            if ((int)response.StatusCode >= 400) {
                 throw new ApiAccessException(response.StatusDescription) {
                     StatusCode = response.StatusCode,
                     StatusDescription = response.StatusDescription,
