@@ -8,7 +8,7 @@ namespace FellowshipOne.Api.People.Sets {
         private const string CHILD_LIST_URL = "/v1/households/{0}/people";
         private const string CREATE_URL = "/v1/people";
         private const string EDIT_URL = "/v1/people/{0}";
-        private const string IMAGE_URL = "/v1/people/{0}/image?Size={1}";
+        private const string IMAGE_URL = "/v1/people/{0}/images";
 
         public People(OAuthTicket ticket, string baseUrl) : base(ticket, baseUrl, ContentType.XML) { }
 
