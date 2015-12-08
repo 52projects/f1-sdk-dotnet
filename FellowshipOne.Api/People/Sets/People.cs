@@ -9,6 +9,7 @@ namespace FellowshipOne.Api.People.Sets {
         private const string CREATE_URL = "/v1/people";
         private const string EDIT_URL = "/v1/people/{0}";
         private const string IMAGE_URL = "/v1/people/{0}/images";
+        private const string IMAGE_UPDATE_URL = "/v1/people/{0}/images/{1}";
 
         public People(OAuthTicket ticket, string baseUrl) : base(ticket, baseUrl, ContentType.XML) { }
 
@@ -21,6 +22,22 @@ namespace FellowshipOne.Api.People.Sets {
         public byte[] GetImage(string id, string size = "M") {
             var url = string.Format(IMAGE_URL, id, size);
             return this.GetByteArray(url);
+        }
+
+        public void CreateImage(string id, byte[] image) {
+            this.Create(image, this.BaseUrl + string.Format(IMAGE_URL, id));
+
+            //var request = this.CreateRestRequest(RestSharp.Method.POST, string.Format(IMAGE_URL, id), "application/octet-stream");
+            //request.AddFileBytes("stream", image, "people-image.jpg", "image/jpeg");
+            //this.ExecuteGenericRequest(request);
+        }
+
+        public void UpdateImage(string id, byte[] image, string imageID) {
+            this.Update(image, this.BaseUrl + string.Format(IMAGE_UPDATE_URL, id, imageID));
+
+            //var request = this.CreateRestRequest(RestSharp.Method.PUT, string.Format(IMAGE_UPDATE_URL, id, imageID), "application/octet-stream");
+            //request.AddFileBytes("stream", image, "people-image.jpg", "image/jpeg");
+            //this.ExecuteGenericRequest(request);
         }
     }
 }

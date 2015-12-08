@@ -201,10 +201,8 @@ namespace FellowshipOne.Api {
                 }
                 targetUrl = CreateUrl;
             }
-            var request = new RestRequest(Method.POST) {
-                Resource = targetUrl
-            };
-            request.AddFile("stream", stream, string.Empty);
+            var request = this.CreateRestRequest(Method.POST, targetUrl);
+            request.AddFile("stream", stream, "photo.jpg", "image/jpeg");
             var item = ExecuteRequest(request);
             return (int)item.StatusCode < 300;
         }
@@ -332,13 +330,24 @@ namespace FellowshipOne.Api {
             return item.Data;
         }
 
-        public virtual bool Update(byte[] stream, string id) {
-            if (string.IsNullOrWhiteSpace(EditUrl)) {
-                throw new NotImplementedException("The property EditUrl has no value on the ApiSet.");
+        public virtual bool Update(byte[] stream, string url = "") {
+            var targetUrl = string.Empty;
+            if (!string.IsNullOrWhiteSpace(url)) {
+                if (url.Trim().Length <= _baseUrl.Length) {
+                    throw new Exception("Invalid url: " + url);
+                }
+                targetUrl = url.Substring(_baseUrl.Length);
             }
-
-            var request = CreateRestRequest(Method.PUT, string.Format(EditUrl, id));
-            request.AddFile("stream", stream, string.Empty);
+            if (string.IsNullOrWhiteSpace(targetUrl)) {
+                if (string.IsNullOrWhiteSpace(EditUrl)) {
+                    throw new NotImplementedException("The property EditUrl has no value on the ApiSet.");
+                }
+                targetUrl = CreateUrl;
+            }
+            var request = new RestRequest(Method.PUT) {
+                Resource = targetUrl
+            };
+            request.AddFile("stream", stream, "photo.jpg", "image/jpeg");
 
             var item = ExecuteRequest(request);
             return (int)item.StatusCode < 300;
