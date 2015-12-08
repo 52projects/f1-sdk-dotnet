@@ -390,39 +390,6 @@ namespace FellowshipOne.Api {
 
         public byte[] GetByteArray(string url) {
             try {
-                //var response = this.ExecuteCustomRequest<List<byte>>(request);
-
-                //var responseContent = response.Data.ToArray();
-                //return responseContent;
-
-                //System.Net.HttpWebRequest _HttpWebRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(_baseUrl + url);
-
-                //_HttpWebRequest.AllowWriteStreamBuffering = true;
-                //if (_requestHeaders != null && _requestHeaders.Count > 0) {
-                //    foreach (var current in _requestHeaders) {
-                //        if (current.Key == "User-Agent") {
-                //            _HttpWebRequest.UserAgent = current.Value;
-                //        }
-                //        else {
-                //            _HttpWebRequest.Headers.Add(current.Key, current.Value);
-                //        }
-                //    }
-                //}
-
-                //// set timeout for 20 seconds (Optional)
-                //_HttpWebRequest.Timeout = 20000;
-
-                //// Request response:
-                //System.Net.WebResponse _WebResponse = _HttpWebRequest.GetResponse();
-
-                //// Open data stream:
-                //System.IO.Stream _WebStream = _WebResponse.GetResponseStream();
-
-                //using (var memoryStream = new MemoryStream()) {
-                //    _WebStream.CopyTo(memoryStream);
-                //    return memoryStream.ToArray();
-                //}
-
                 var request = CreateRestRequest(Method.GET, url);
                 var client = new RestSharp.RestClient(_baseUrl);
                 client.FollowRedirects = false;
