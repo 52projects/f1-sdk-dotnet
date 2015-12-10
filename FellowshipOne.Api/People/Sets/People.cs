@@ -24,20 +24,16 @@ namespace FellowshipOne.Api.People.Sets {
             return this.GetByteArray(url);
         }
 
-        public void CreateImage(string id, byte[] image) {
-            this.Create(image, this.BaseUrl + string.Format(IMAGE_URL, id));
-
-            //var request = this.CreateRestRequest(RestSharp.Method.POST, string.Format(IMAGE_URL, id), "application/octet-stream");
-            //request.AddFileBytes("stream", image, "people-image.jpg", "image/jpeg");
-            //this.ExecuteGenericRequest(request);
+        public void CreateImage(string id, byte[] image, string filename, string fileType) {
+            var request = this.CreateRestRequest(RestSharp.Method.PUT, string.Format(IMAGE_URL, id), "application/octet-stream");
+            request.AddFileBytes("stream", image, filename, fileType);
+            var response = this.ExecuteGenericRequest(request);
         }
 
-        public void UpdateImage(string id, byte[] image, string imageID) {
-            this.Update(image, this.BaseUrl + string.Format(IMAGE_UPDATE_URL, id, imageID));
-
-            //var request = this.CreateRestRequest(RestSharp.Method.PUT, string.Format(IMAGE_UPDATE_URL, id, imageID), "application/octet-stream");
-            //request.AddFileBytes("stream", image, "people-image.jpg", "image/jpeg");
-            //this.ExecuteGenericRequest(request);
+        public void UpdateImage(string id, byte[] image, string filename, string fileType, string imageID) {
+            var request = this.CreateRestRequest(RestSharp.Method.PUT, string.Format(IMAGE_UPDATE_URL, id, imageID), "application/octet-stream");
+            request.AddFileBytes("stream", image, filename, fileType);
+            var response = this.ExecuteGenericRequest(request);
         }
     }
 }
