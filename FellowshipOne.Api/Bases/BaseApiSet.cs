@@ -207,7 +207,7 @@ namespace FellowshipOne.Api {
             return (int)item.StatusCode < 300;
         }
 
-        public virtual T Create(byte[] stream, string url = "", string fileParamaterName = "stream", string fileName = "") {
+        public virtual T Create(byte[] stream, string url = "", string fileParamaterName = "stream", string fileName = "", string fileType = "") {
             var targetUrl = string.Empty;
             if (!string.IsNullOrWhiteSpace(url)) {
                 if (url.Trim().Length <= _baseUrl.Length) {
@@ -222,7 +222,7 @@ namespace FellowshipOne.Api {
                 targetUrl = CreateUrl;
             }
             var request = CreateRestRequest(Method.POST, targetUrl);
-            request.AddFile(fileParamaterName, stream, fileName);
+            request.AddFile(fileParamaterName, stream, fileName, fileType);
 
             var response = this.ExecuteRequest(request);
             return response.Data;
@@ -330,7 +330,7 @@ namespace FellowshipOne.Api {
             return item.Data;
         }
 
-        public virtual bool Update(byte[] stream, string url = "") {
+        public virtual bool Update(byte[] stream, string url = "", string filename = "", string fileType = "") {
             var targetUrl = string.Empty;
             if (!string.IsNullOrWhiteSpace(url)) {
                 if (url.Trim().Length <= _baseUrl.Length) {
@@ -344,10 +344,8 @@ namespace FellowshipOne.Api {
                 }
                 targetUrl = CreateUrl;
             }
-            var request = new RestRequest(Method.PUT) {
-                Resource = targetUrl
-            };
-            request.AddFile("stream", stream, "photo.jpg", "image/jpeg");
+            var request = CreateRestRequest(Method.PUT, targetUrl);
+            request.AddFile("stream", stream, filename, fileType);
 
             var item = ExecuteRequest(request);
             return (int)item.StatusCode < 300;
@@ -483,7 +481,7 @@ namespace FellowshipOne.Api {
             var response = client.Execute<S>(request);
 
             if ((int)response.StatusCode > 300) {
-                throw new ApiAccessException(response.ErrorException.Message) {
+                throw new ApiAccessException(response.ErrorException != null ? response.ErrorException.Message : "API Access Exception") {
                     StatusCode = response.StatusCode,
                     StatusDescription = response.StatusDescription,
                     RequestUrl = response.ResponseUri.AbsoluteUri
