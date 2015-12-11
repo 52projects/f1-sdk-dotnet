@@ -98,6 +98,26 @@ namespace FellowshipOne.Api.Realms {
                 return _contributionReceipts;
             }
         }
+
+        private FellowshipOne.Api.Giving.Sets.ContributionTypes _contributionTypes;
+        public FellowshipOne.Api.Giving.Sets.ContributionTypes ContributionTypes {
+            get {
+                if (_contributionTypes == null) {
+                    _contributionTypes = new FellowshipOne.Api.Giving.Sets.ContributionTypes(_ticket, _baseUrl);
+                }
+                return _contributionTypes;
+            }
+        }
+
+        private FellowshipOne.Api.Giving.Sets.ContributionSubTypes _contributionSubTypes;
+        public FellowshipOne.Api.Giving.Sets.ContributionSubTypes ContributionSubTypes {
+            get {
+                if (_contributionSubTypes == null) {
+                    _contributionSubTypes = new FellowshipOne.Api.Giving.Sets.ContributionSubTypes(_ticket, _baseUrl);
+                }
+                return _contributionSubTypes;
+            }
+        }
         #endregion Properties
 
         #region Constructor
