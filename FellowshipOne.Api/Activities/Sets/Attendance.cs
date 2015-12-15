@@ -6,9 +6,8 @@ namespace FellowshipOne.Api.Activities.Sets {
         private readonly string _baseUrl = string.Empty;
         private const string LIST_URL = "/activities/v1/activities/{0}/instances/{1}/attendances";
         private const string GET_URL = "/activities/v1/activities/{0}/assignments/{1}";
-        private string _createUrl = string.Empty;
-        private string _editUrl = string.Empty;
-
+        private const string CREATE_URL = "/activities/v1/activities/{0}/instances/{1}/attendances";
+        private const string EDIT_URL = "/activities/v1/activities/{0}/instances/{1}/attendances/{2}";
 
         public Attendance(OAuthTicket ticket, string baseUrl)
             : base(ticket, baseUrl, ContentType.JSON) {
@@ -17,18 +16,18 @@ namespace FellowshipOne.Api.Activities.Sets {
 
         protected override string GetChildListUrl { get { return LIST_URL; } }
         protected override string GetChildUrl { get { return GET_URL; } }
-        protected override string CreateUrl { get { return _createUrl; } }
-        protected override string EditUrl { get { return GET_URL; } }
 
         private string _listUrl = string.Empty;
-        protected override string ListUrl {
-            get {
-                return _listUrl;
-            }
-        }
+        protected override string ListUrl { get { return _listUrl; } }
+
+        private string _createUrl = string.Empty;
+        protected override string CreateUrl { get { return _createUrl; } }
+
+        private string _editUrl = string.Empty;
+        protected override string EditUrl { get { return _editUrl; } }
 
         public F1Collection<Model.Attendance> FindAll(int activityID, int instanceID, int? page = null) {
-            _listUrl = string.Format(LIST_URL, activityID, instanceID);
+            _listUrl = string.Format(CREATE_URL, activityID, instanceID);
             return base.FindAll(page);
         }
 
@@ -37,5 +36,9 @@ namespace FellowshipOne.Api.Activities.Sets {
             return Create(entity);
         }
 
+        public Model.Attendance Update(Model.Attendance entity) {
+            _editUrl = string.Format(EDIT_URL, entity.Activity.ID, entity.Instance.ID, entity.ID);
+            return Update(entity, entity.ID.ToString());
+        }
     }
 }
