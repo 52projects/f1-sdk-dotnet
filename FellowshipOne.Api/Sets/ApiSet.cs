@@ -22,7 +22,7 @@ namespace FellowshipOne.Api {
             : base(requestHeaders, baseUrl, contentType) {
         }
 
-        public virtual F1Collection<T> FindAll(int? page = null) {
+        public virtual F1Collection<T> FindAll(int? page = null, int? pageSize = null) {
             var collection = new F1Collection<T>();
 
             if (string.IsNullOrWhiteSpace(ListUrl)) {
@@ -33,6 +33,10 @@ namespace FellowshipOne.Api {
 
             if (page.HasValue) {
                 request.AddParameter("page", page.Value);
+            }
+
+            if (pageSize.HasValue) {
+                request.AddParameter("pageSize", pageSize.Value);
             }
 
             var item = base.ExecuteListRequest(request);
