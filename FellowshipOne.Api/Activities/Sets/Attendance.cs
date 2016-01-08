@@ -40,5 +40,10 @@ namespace FellowshipOne.Api.Activities.Sets {
             _editUrl = string.Format(EDIT_URL, entity.Activity.ID, entity.Instance.ID, entity.ID);
             return Update(entity, entity.ID.ToString());
         }
+
+        public void Delete(int activityID, int instanceID, int attendanceID) {
+            _editUrl = string.Format(EDIT_URL, activityID, instanceID, attendanceID);
+            base.Delete(attendanceID.ToString());
+        }
     }
 }
