@@ -14,8 +14,8 @@ namespace FellowshipOne.Api.Activities.Model {
         public ParentObject Instance { get; set; }
         public ParentObject Roster { get; set; }
         public ParentNamedObject Type { get; set; }
-        public bool? Checkin { get; set; }
-        public bool? Checkout { get; set; }
+        public DateTime? Checkin { get; set; }
+        public DateTime? Checkout { get; set; }
         public DateTime? CreatedDate { get; set; }
         public ParentObject CreatedByPerson { get; set; }
         public DateTime? LastUpdatedDate { get; set; }
