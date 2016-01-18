@@ -428,7 +428,7 @@ namespace FellowshipOne.Api {
             var response = client.Execute<T>(request);
 
             if ((int)response.StatusCode >= 400) {
-                throw new ApiAccessException(response.StatusDescription) {
+                throw new ApiAccessException(response.Content) {
                     StatusCode = response.StatusCode,
                     StatusDescription = response.StatusDescription,
                     RequestUrl = response.ResponseUri.AbsoluteUri
