@@ -4,7 +4,7 @@ using FellowshipOne.Api.People.QueryObject;
 using System.Configuration;
 
 namespace FellowshipOne.Api.Tests {
-    public class Base {
+    public class OAuth2Base {
         internal RestClient RestClient;
         internal F1OAuthTicket Ticket;
         internal int _testIndividualID;
@@ -13,19 +13,14 @@ namespace FellowshipOne.Api.Tests {
         public void Setup() {
             this.Ticket = new F1OAuthTicket {
                 ConsumerKey = ConfigurationManager.AppSettings["Consumer.Key"],
-                ConsumerSecret =  ConfigurationManager.AppSettings["Consumer.Secret"],
+                ConsumerSecret = ConfigurationManager.AppSettings["Consumer.Secret"],
                 ChurchCode = ConfigurationManager.AppSettings["Church.Code"],
                 AccessToken = "",
                 AccessTokenSecret = ""
             };
 
-            RestClient = new RestClient(this.Ticket, true);
-
-            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], ConfigurationManager.AppSettings["API.Url"], "v1/PortalUser/AccessToken");
-
-            this.Ticket.AccessToken = oauth.AccessToken;
-            this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;
-
+            var response = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["UserName"], ConfigurationManager.AppSettings["Password"], bool.Parse(ConfigurationManager.AppSettings["FellowshipOne.Is.Staging"]));
+            RestClient = new RestClient(response, bool.Parse(ConfigurationManager.AppSettings["FellowshipOne.Is.Staging"]));
             _testIndividualID = int.Parse(ConfigurationManager.AppSettings["Test.Individual.ID"]);
         }
     }

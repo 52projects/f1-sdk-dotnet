@@ -77,14 +77,17 @@
     <Compile Include="Activities\ActivitiesTest.cs" />
     <Compile Include="Activities\ActivityTypesTests.cs" />
     <Compile Include="Activities\AssignmentsTests.cs" />
+    <Compile Include="Activities\AttendanceTests.cs" />
     <Compile Include="Activities\InstancesTests.cs" />
     <Compile Include="Activities\MinistryTests.cs" />
     <Compile Include="Activities\RosterFoldersTests.cs" />
     <Compile Include="Activities\RostersTests.cs" />
     <Compile Include="Activities\SchedulesTests.cs" />
+    <Compile Include="Authorize\ClientCredentials.cs" />
     <Compile Include="Authorize\FristParty.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Giving\BatchesTest.cs" />
+    <Compile Include="OAuth2Base.cs" />
     <Compile Include="People\PeopleTests.cs" />
     <Compile Include="People\StatusTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

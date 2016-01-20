@@ -10,7 +10,7 @@ namespace FellowshipOne.Api.Activities.Sets {
 
 
         public Assignments(OAuthTicket ticket, string baseUrl)
-            : base(ticket, baseUrl, ContentType.JSON) {
+            : base(ticket.AccessToken, baseUrl, ContentType.JSON) {
             _baseUrl = baseUrl;
         }
 
