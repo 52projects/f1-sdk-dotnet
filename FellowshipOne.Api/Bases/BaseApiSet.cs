@@ -81,6 +81,13 @@ namespace FellowshipOne.Api {
             _baseUrl = baseUrl;
             _contentType = contentType;
         }
+
+        protected BaseApiSet(string accessToken, string baseUrl, ContentType contentType) {
+            _baseUrl = baseUrl;
+            _contentType = contentType;
+            _requestHeaders = new Dictionary<string, string>();
+            _requestHeaders.Add("Authorization", "Bearer " + accessToken);
+        }
         #endregion Constructor
 
         #region Actions

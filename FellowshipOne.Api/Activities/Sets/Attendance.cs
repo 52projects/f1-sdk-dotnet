@@ -10,7 +10,7 @@ namespace FellowshipOne.Api.Activities.Sets {
         private const string EDIT_URL = "/activities/v1/activities/{0}/instances/{1}/attendances/{2}";
 
         public Attendance(OAuthTicket ticket, string baseUrl)
-            : base(ticket, baseUrl, ContentType.JSON) {
+            : base(ticket.AccessToken, baseUrl, ContentType.JSON) {
             _baseUrl = baseUrl;
         }
 

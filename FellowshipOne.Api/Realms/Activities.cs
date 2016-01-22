@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FellowshipOne.Api.Realms {
     public class F1Activities {
         #region Properties
-        F1OAuthTicket _ticket { get; set; }
+        OAuthTicket _ticket { get; set; }
         string _baseUrl { get; set; }
 
         private FellowshipOne.Api.Activities.Sets.Ministries _ministries;
@@ -112,7 +112,7 @@ namespace FellowshipOne.Api.Realms {
         #endregion Properties
 
         #region Constructor
-        public F1Activities(F1OAuthTicket ticket, string baseUrl) {
+        public F1Activities(OAuthTicket ticket, string baseUrl) {
             _ticket = ticket;
             _baseUrl = baseUrl;
         }

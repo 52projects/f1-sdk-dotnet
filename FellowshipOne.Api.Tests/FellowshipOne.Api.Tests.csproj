@@ -40,8 +40,8 @@
       <HintPath>..\packages\FiftytwoProjects.Restify.1.1.34\lib\net40\FiftytwoProjects.Restify.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -77,14 +77,17 @@
     <Compile Include="Activities\ActivitiesTest.cs" />
     <Compile Include="Activities\ActivityTypesTests.cs" />
     <Compile Include="Activities\AssignmentsTests.cs" />
+    <Compile Include="Activities\AttendanceTests.cs" />
     <Compile Include="Activities\InstancesTests.cs" />
     <Compile Include="Activities\MinistryTests.cs" />
     <Compile Include="Activities\RosterFoldersTests.cs" />
     <Compile Include="Activities\RostersTests.cs" />
     <Compile Include="Activities\SchedulesTests.cs" />
+    <Compile Include="Authorize\ClientCredentials.cs" />
     <Compile Include="Authorize\FristParty.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Giving\BatchesTest.cs" />
+    <Compile Include="OAuth2Base.cs" />
     <Compile Include="People\PeopleTests.cs" />
     <Compile Include="People\StatusTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

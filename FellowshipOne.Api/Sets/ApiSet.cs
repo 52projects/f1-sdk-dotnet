@@ -22,6 +22,10 @@ namespace FellowshipOne.Api {
             : base(requestHeaders, baseUrl, contentType) {
         }
 
+        public ApiSet(string accessToken, string baseUrl, ContentType contentType)
+            : base(accessToken, baseUrl, contentType) {
+        }
+
         public virtual F1Collection<T> FindAll(int? page = null, int? pageSize = null) {
             var collection = new F1Collection<T>();
 

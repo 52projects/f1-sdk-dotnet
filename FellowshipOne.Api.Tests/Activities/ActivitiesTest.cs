@@ -11,7 +11,7 @@ using FellowshipOne.Api.Activities.QueryObject;
 
 namespace FellowshipOne.Api.Tests.Activities {
     [TestFixture]
-    public class ActivitiesTests : Base {
+    public class ActivitiesTests : OAuth2Base {
         [Test]
         public void integration_fellowshipone_api_ministries_find_all_activities() {
             var results = RestClient.ActivitiesRealm.Activities.FindAll();
