@@ -213,6 +213,60 @@ namespace FellowshipOne.Api {
                 return null;
             }
         }
+
+        public static void RevokeAccessToken(F1OAuthTicket ticket, bool isStaging) {
+            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
+            var restClient = new RestSharp.RestClient(baseUrl);
+            
+            var request = new RestRequest("v1/oauth2/revoke", Method.GET);
+            request.AddParameter("client_id", ticket.ConsumerKey);
+            request.AddParameter("client_secret", ticket.ConsumerSecret);
+            request.AddParameter("token", ticket.AccessToken);
+
+            var response = restClient.Execute(request);
+
+            if (response.StatusCode != HttpStatusCode.OK) {
+                throw new ApiAccessException(response.StatusDescription) {
+                    StatusCode = response.StatusCode,
+                    StatusDescription = response.StatusDescription,
+                    RequestUrl = response.ResponseUri.AbsoluteUri
+                };
+            }
+            else {
+
+            }
+        }
+
+        public static F1OAuthTicket RefreshToken(F1OAuthTicket ticket, bool isStaging) {
+            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
+            var restClient = new RestSharp.RestClient(baseUrl);
+
+            var request = new RestRequest("v1/oauth2/token", Method.POST);
+            request.AddParameter("client_id", ticket.ConsumerKey);
+            request.AddParameter("client_secret", ticket.ConsumerSecret);
+            request.AddParameter("grant_type", "refresh_token");
+            request.AddParameter("refresh_token", ticket.RefreshToken);
+
+            var response = restClient.Execute(request);
+
+            if (response.StatusCode != HttpStatusCode.OK) {
+                throw new ApiAccessException(response.StatusDescription) {
+                    StatusCode = response.StatusCode,
+                    StatusDescription = response.StatusDescription,
+                    RequestUrl = response.ResponseUri.AbsoluteUri
+                };
+            }
+            else {
+                var json = JObject.Parse(response.Content);
+
+                ticket.AccessToken = json.SelectToken("access_token").ToString();
+                ticket.TokenType = json.SelectToken("token_type").ToString();
+                ticket.RefreshToken = json.SelectToken("refresh_token").ToString();
+                ticket.ExpiresIn = decimal.Parse(json.SelectToken("expires_in").ToString());
+                ticket.PersonID = int.Parse(json.SelectToken("person").SelectToken("id").ToString());
+                return ticket;
+            }
+        }
         #endregion Methods
     }
 
