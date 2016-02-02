@@ -17,7 +17,7 @@ namespace FellowshipOne.Api.Tests.Activities {
             var times = new List<bool>();
             for (int i = 0; i < 50; i++) {
                 try {
-                    var results = this.RestClient.ActivitiesRealm.Attendance.FindAll(27776, 87757251, 1);
+                    var results = this.RestClient.ActivitiesRealm.Attendance.FindAll(27776, 77559029, 1);
                     times.Add(true);
                 }
                 catch (Exception e) {
