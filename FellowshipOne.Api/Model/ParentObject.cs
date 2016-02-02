@@ -18,7 +18,7 @@ namespace FellowshipOne.Api.Model {
     public class ParentNamedObject : APIModel {
         private string _name = string.Empty;
         [XmlElement("name")]
-        [JsonProperty("uri")]
+        [JsonProperty("name")]
         public string Name {
             get { return _name; }
             set { _name = value; }
