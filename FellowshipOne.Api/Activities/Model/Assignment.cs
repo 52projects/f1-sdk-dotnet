@@ -17,7 +17,7 @@ namespace FellowshipOne.Api.Activities.Model {
         public ParentObject Person { get; set; }
 
         [JsonProperty("activity")]
-        public ParentObject Activity { get; set; }
+        public ParentNamedObject Activity { get; set; }
 
         [JsonProperty("schedule")]
         public ParentObject Schedule { get; set; }

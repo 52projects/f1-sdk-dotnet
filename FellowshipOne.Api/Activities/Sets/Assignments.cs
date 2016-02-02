@@ -23,7 +23,7 @@ namespace FellowshipOne.Api.Activities.Sets {
 
         public Model.Assignment Create(int activityID, Model.Assignment entity) {
             _createUrl = string.Format(LIST_URL, activityID);
-            return Create(entity);
+            return Create(entity, _createUrl);
         }
 
         public Model.Assignment Create(int activityID, Model.Assignment entity, out string requestXml) {
