@@ -77,6 +77,7 @@
     <Compile Include="Activities\ActivitiesTest.cs" />
     <Compile Include="Activities\ActivityTypesTests.cs" />
     <Compile Include="Activities\AssignmentsTests.cs" />
+    <Compile Include="Activities\AssignmentTypesTests.cs" />
     <Compile Include="Activities\AttendanceTests.cs" />
     <Compile Include="Activities\InstancesTests.cs" />
     <Compile Include="Activities\MinistryTests.cs" />

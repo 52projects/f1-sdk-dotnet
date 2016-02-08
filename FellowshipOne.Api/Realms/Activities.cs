@@ -109,6 +109,16 @@ namespace FellowshipOne.Api.Realms {
                 return _rooms;
             }
         }
+
+        private FellowshipOne.Api.Activities.Sets.AssignmentTypes _assignmentTypes;
+        public FellowshipOne.Api.Activities.Sets.AssignmentTypes AssignmentTypes {
+            get {
+                if (_assignmentTypes == null) {
+                    _assignmentTypes = new FellowshipOne.Api.Activities.Sets.AssignmentTypes(_ticket, _baseUrl);
+                }
+                return _assignmentTypes;
+            }
+        }
         #endregion Properties
 
         #region Constructor
