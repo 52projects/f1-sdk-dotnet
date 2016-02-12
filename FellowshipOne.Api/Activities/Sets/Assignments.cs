@@ -10,7 +10,7 @@ namespace FellowshipOne.Api.Activities.Sets {
 
 
         public Assignments(OAuthTicket ticket, string baseUrl)
-            : base(ticket.AccessToken, baseUrl, ContentType.JSON) {
+            : base(ticket, baseUrl, ContentType.JSON) {
             _baseUrl = baseUrl;
         }
 
@@ -23,7 +23,7 @@ namespace FellowshipOne.Api.Activities.Sets {
 
         public Model.Assignment Create(int activityID, Model.Assignment entity) {
             _createUrl = string.Format(LIST_URL, activityID);
-            return Create(entity);
+            return Create(entity, _createUrl);
         }
 
         public Model.Assignment Create(int activityID, Model.Assignment entity, out string requestXml) {

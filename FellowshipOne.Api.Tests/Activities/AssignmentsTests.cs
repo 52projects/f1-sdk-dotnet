@@ -47,7 +47,7 @@ namespace FellowshipOne.Api.Tests.Activities {
 
             var assigment = new Assignment {
                 URI = string.Empty,
-                Activity = new ParentObject {
+                Activity = new ParentNamedObject {
                     ID = activityID
                 },
                 Person = new ParentObject {
