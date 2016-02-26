@@ -83,7 +83,9 @@
     <Compile Include="Giving\Model\ContributionSubType.cs" />
     <Compile Include="Giving\Sets\ContributionSubTypes.cs" />
     <Compile Include="Giving\Sets\ContributionTypes.cs" />
+    <Compile Include="People\Model\Account.cs" />
     <Compile Include="People\Model\School.cs" />
+    <Compile Include="People\Sets\Accounts.cs" />
     <Compile Include="People\Sets\Schools.cs" />
     <Compile Include="Sets\ApiSet.cs" />
     <Compile Include="Attributes\QOAttribute.cs" />

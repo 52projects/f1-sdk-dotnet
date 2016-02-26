@@ -64,6 +64,16 @@ namespace FellowshipOne.Api.Realms {
             }
         }
 
+        private FellowshipOne.Api.People.Sets.Accounts _accounts;
+        public FellowshipOne.Api.People.Sets.Accounts Accounts {
+            get {
+                if (_accounts == null) {
+                    _accounts = new People.Sets.Accounts(_ticket, _baseUrl);
+                }
+                return _accounts;
+            }
+        }
+
         private FellowshipOne.Api.People.Sets.AttributeGroups _attributeGroups;
         public FellowshipOne.Api.People.Sets.AttributeGroups AttributeGroups {
             get {
