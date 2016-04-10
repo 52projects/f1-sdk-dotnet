@@ -15,8 +15,9 @@ namespace FellowshipOne.Api.Tests.People {
         [Test]
         public void people_search() {
             var qo = new PeopleQO();
-            qo.Name = "sm";
+            qo.Name = "rachel stewart";
             qo.RecordsPerPage = 5;
+            qo.IncludeAddress = true;
 
             var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
             people.ShouldNotBe(null);

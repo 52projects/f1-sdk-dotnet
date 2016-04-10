@@ -176,7 +176,7 @@ namespace FellowshipOne.Api.People.Model {
             }
             set {
                 if (value != null) {
-                    _createdDateString = value;
+                    _lastupdatedDateString = value;
                 }
             }
         }

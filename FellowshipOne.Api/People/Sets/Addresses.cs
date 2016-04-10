@@ -1,4 +1,6 @@
-﻿
+﻿using System.Collections.Generic;
+using FellowshipOne.Api.People.Model;
+
 
 namespace FellowshipOne.Api.People.Sets {
     public class Addresses : ApiSet<Model.Address> {
@@ -17,7 +19,15 @@ namespace FellowshipOne.Api.People.Sets {
         protected override string GetChildListUrl { get { return CHILD_LIST_URL; } }
         protected override string CreateUrl { get { return CREATE_URL; } }
         protected override string EditUrl { get { return EDIT_URL; } }
-        
+
+        private string _listUrl = CREATE_HOUSEHOLD_ADDRESS_URL;
+        protected override string ListUrl {
+            get {
+                return _listUrl;
+            }
+        }
+
+
         public Model.Address CreateForPerson(int personID, Model.Address entity) {
             var url = string.Format(CREATE_INDIVIDUAL_ADDRESS_URL, personID);
             return Create(entity, url);
@@ -36,6 +46,11 @@ namespace FellowshipOne.Api.People.Sets {
         public Model.Address CreateForHousehold(int householdID, Model.Address entity, out string requestXml) {
             var url = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
             return Create(entity, out requestXml, url);
+        }
+
+        public List<Address> GetHouseholdAddresses(string householdID) {
+            _listUrl = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
+            return List();
         }
     }
 }

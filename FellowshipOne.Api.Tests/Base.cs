@@ -19,7 +19,7 @@ namespace FellowshipOne.Api.Tests {
                 AccessTokenSecret = ""
             };
 
-            RestClient = new RestClient(this.Ticket, true);
+            RestClient = new RestClient(this.Ticket, false);
 
             var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], ConfigurationManager.AppSettings["API.Url"], "v1/PortalUser/AccessToken");
 

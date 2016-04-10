@@ -1,5 +1,6 @@
 ﻿
 using FellowshipOne.Api.People.Model;
+using System.Collections.Generic;
 
 namespace FellowshipOne.Api.People.Sets {
     public class Households : ApiSet<Household> {
