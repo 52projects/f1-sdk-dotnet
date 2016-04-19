@@ -51,7 +51,7 @@ namespace FellowshipOne.Api.People.Model {
         }
 
         [XmlElement("preferred")]
-        public bool Preferred { get; set; }
+        public bool? Preferred { get; set; }
 
         private string _communicationComment = string.Empty;
         [XmlElement("communicationComment")]

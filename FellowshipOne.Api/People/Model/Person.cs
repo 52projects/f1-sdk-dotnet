@@ -170,9 +170,9 @@ namespace FellowshipOne.Api.People.Model {
             set { _householdMemberType = value; }
         }
 
-        private bool _isAuthorized = true;
+        private bool? _isAuthorized = true;
         [XmlElement("isAuthorized")]
-        public bool IsAuthorized {
+        public bool? IsAuthorized {
             get {
                 return _isAuthorized;
             }
