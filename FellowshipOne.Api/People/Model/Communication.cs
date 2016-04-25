@@ -50,8 +50,16 @@ namespace FellowshipOne.Api.People.Model {
             set { this._searchCommunicationValue = value; }
         }
 
+        private bool _preferred = false;
         [XmlElement("preferred")]
-        public bool? Preferred { get; set; }
+        public bool? Preferred {
+            get { return _preferred; }
+            set {
+                if (value.HasValue) {
+                    this._preferred = value.Value;
+                }
+            }
+        }
 
         private string _communicationComment = string.Empty;
         [XmlElement("communicationComment")]

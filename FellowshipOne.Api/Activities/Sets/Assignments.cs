@@ -33,9 +33,7 @@ namespace FellowshipOne.Api.Activities.Sets {
 
         public bool Delete(int activityID, int assignmentID) {
             _editUrl = string.Format(GET_URL, activityID, assignmentID);
-            //bas
-
-            return false;
+            return Delete(assignmentID.ToString());
         }
     }
 }
