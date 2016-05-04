@@ -87,6 +87,7 @@
     <Compile Include="Authorize\ClientCredentials.cs" />
     <Compile Include="Authorize\FristParty.cs" />
     <Compile Include="Base.cs" />
+    <Compile Include="Communication\CreateEmailTests.cs" />
     <Compile Include="Giving\BatchesTest.cs" />
     <Compile Include="OAuth2Base.cs" />
     <Compile Include="People\PeopleTests.cs" />
