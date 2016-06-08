@@ -424,4 +424,15 @@ namespace FellowshipOne.Api.Giving.Model {
 
         #endregion Properties
     }
+
+    [Serializable]
+    [XmlRoot("results")]
+    public class ContributionReceiptCollection : Collection<ContributionReceipt> {
+        public ContributionReceiptCollection() { }
+        public ContributionReceiptCollection(List<ContributionReceipt> contributionReceipts) {
+            if (contributionReceipts != null) {
+                this.AddRange(contributionReceipts);
+            }
+        }
+    }
 }
