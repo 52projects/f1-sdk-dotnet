@@ -42,6 +42,11 @@ namespace FellowshipOne.Api.People.Sets {
             return Create(entity, out requestXml);
         }
 
+        public PersonAttribute UpdateForPerson(int personID, Model.PersonAttribute entity) {
+            this._editUrl = string.Format(EDIT_URL, personID, entity.APIModelID);
+            return Update(entity, entity.APIModelID);
+        }
+
         public bool DeleteForPerson(int personID, Model.PersonAttribute entity) {
             this._editUrl = string.Format(EDIT_URL, personID, entity.APIModelID);
             return Delete(entity.APIModelID);
