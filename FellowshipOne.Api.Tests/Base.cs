@@ -12,8 +12,8 @@ namespace FellowshipOne.Api.Tests {
         [TestFixtureSetUp]
         public void Setup() {
             this.Ticket = new F1OAuthTicket {
-                ConsumerKey = ConfigurationManager.AppSettings["FellowshipOne.Consumer.Key"],
-                ConsumerSecret =  ConfigurationManager.AppSettings["FellowshipOne.Consumer.Secret"],
+                ConsumerKey = ConfigurationManager.AppSettings["Consumer.Key"],
+                ConsumerSecret =  ConfigurationManager.AppSettings["Consumer.Secret"],
                 ChurchCode = ConfigurationManager.AppSettings["Church.Code"],
                 AccessToken = "",
                 AccessTokenSecret = ""

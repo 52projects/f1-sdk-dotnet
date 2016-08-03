@@ -25,6 +25,19 @@ namespace FellowshipOne.Api.Tests.People {
         }
 
         [Test]
+        public void people_search_phone() {
+            var qo = new PeopleQO();
+            qo.Communication = "6822091225";
+            qo.RecordsPerPage = 5;
+            qo.IncludeAddress = true;
+            qo.IncludeCommunications = true;
+
+            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
+            people.ShouldNotBe(null);
+            people.Count.ShouldBeGreaterThan(0);
+        }
+
+        [Test]
         public void people_create_get_xml_does_not_save() {
             var person = new FellowshipOne.Api.People.Model.Person();
             person.FirstName = "chad";
