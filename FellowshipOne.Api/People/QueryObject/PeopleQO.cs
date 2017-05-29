@@ -89,6 +89,12 @@ namespace FellowshipOne.Api.People.QueryObject {
             get; set;
         }
 
+        [QO("memberEnvNo")]
+        public string MemberEnvelopeNumber { get; set; }
+
+        [QO("attribute")]
+        public int? AttributeID { get; set; }
+
         [QOIgnore]
         public List<string> IndividualIDs { get; set; }
     }
