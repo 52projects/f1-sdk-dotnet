@@ -20,6 +20,16 @@ namespace FellowshipOne.Api.Realms {
             }
         }
 
+        private FellowshipOne.Api.Groups.Sets.GroupTypes _groupTypes;
+        public FellowshipOne.Api.Groups.Sets.GroupTypes GroupTypes {
+            get {
+                if (_groupTypes == null) {
+                    _groupTypes = new Api.Groups.Sets.GroupTypes(_ticket, _baseUrl);
+                }
+                return _groupTypes;
+            }
+        }
+
         #endregion Properties
 
         #region Constructor

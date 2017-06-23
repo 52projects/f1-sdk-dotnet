@@ -84,8 +84,10 @@
     <Compile Include="Giving\Model\ContributionSubType.cs" />
     <Compile Include="Giving\Sets\ContributionSubTypes.cs" />
     <Compile Include="Giving\Sets\ContributionTypes.cs" />
+    <Compile Include="Groups\Model\GroupType.cs" />
     <Compile Include="Groups\Model\Member.cs" />
     <Compile Include="Groups\QueryObject\MemberQO.cs" />
+    <Compile Include="Groups\Sets\GroupTypes.cs" />
     <Compile Include="Groups\Sets\Members.cs" />
     <Compile Include="People\Model\Account.cs" />
     <Compile Include="People\Model\School.cs" />
