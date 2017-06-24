@@ -23,7 +23,7 @@ namespace FellowshipOne.Api {
         public FellowshipOne.Api.Realms.Person PeopleRealm;
         public FellowshipOne.Api.Realms.Giving GivingRealm;
         public FellowshipOne.Api.Realms.F1Activities ActivitiesRealm;
-        public FellowshipOne.Api.Realms.Groups GroupRealm;
+        public FellowshipOne.Api.Realms.GroupsRealm GroupRealm;
         #endregion API Sets
 
         #endregion Properties
@@ -46,7 +46,7 @@ namespace FellowshipOne.Api {
             PeopleRealm = new Realms.Person(ticket, baseUrl);
             GivingRealm = new Realms.Giving(ticket, baseUrl);
             ActivitiesRealm = new Realms.F1Activities(ticket, baseUrl);
-            GroupRealm = new Realms.Groups(ticket, baseUrl);
+            GroupRealm = new Realms.GroupsRealm(ticket, baseUrl);
         }
 
         #endregion Constructor

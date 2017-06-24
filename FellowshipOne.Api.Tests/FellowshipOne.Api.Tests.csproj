@@ -89,6 +89,8 @@
     <Compile Include="Authorize\FristParty.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Giving\BatchesTest.cs" />
+    <Compile Include="Groups\GroupTests.cs" />
+    <Compile Include="Groups\GroupTypesTest.cs" />
     <Compile Include="OAuth2Base.cs" />
     <Compile Include="People\PeopleTests.cs" />
     <Compile Include="People\StatusTests.cs" />
@@ -100,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Communication\" />
-    <Folder Include="Groups\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FellowshipOne.Api\FellowshipOne.Api.csproj">

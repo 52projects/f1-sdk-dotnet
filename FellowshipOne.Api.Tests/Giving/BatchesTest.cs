@@ -1,7 +1,7 @@
 ﻿using FellowshipOne.Api.Giving.Model;
 using FellowshipOne.Api.Model;
 using NUnit.Framework;
-using Restify;
+
 using Shouldly;
 using FellowshipOne.Api.People.QueryObject;
 using System.Configuration;

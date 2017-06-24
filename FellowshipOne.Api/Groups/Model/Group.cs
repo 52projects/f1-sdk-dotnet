@@ -9,16 +9,45 @@ using System.Xml.Serialization;
 
 namespace FellowshipOne.Api.Groups.Model {
     [Serializable]
-    [XmlRoot("groupType")]
-    public class GroupType : APIModel {
+    [XmlRoot("group")]
+    public class Group : APIModel {
         [XmlElement("name")]
         public string Name { get; set; }
         [XmlElement("description")]
         public string Description { get; set; }
-        [XmlElement("isWebEnabled")]
-        public bool IsWebEnabled { get; set; }
+        [XmlElement("startDate")]
+        public DateTime? StartDate { get; set; }
+        [XmlElement("expirationDate")]
+        public DateTime? ExpirationDate { get; set; }
+        [XmlElement("isOpen")]
+        public bool IsOpen { get; set; }
+        [XmlElement("isPublic")]
+        public bool IsPublic { get; set; }
+        [XmlElement("hasChildCare")]
+        public bool HasChildCare { get; set; }
         [XmlElement("isSearchable")]
         public bool IsSearchable { get; set; }
+        [XmlElement("churchCampus")]
+        public ParentNamedObject ChurchCampus { get; set; }
+        [XmlElement("groupType")]
+        public ParentNamedObject GroupType { get; set; }
+        [XmlElement("timeZone")]
+        public ParentNamedObject TimeZone { get; set; }
+        [XmlElement("gender")]
+        public ParentNamedObject Gender { get; set; }
+        [XmlElement("maritalStatus")]
+        public ParentNamedObject MaritalStatus { get; set; }
+        [XmlElement("dateRangeType")]
+        public ParentNamedObject DateRangeType { get; set; }
+        [XmlElement("leadersCount")]
+        public int LeadersCount { get; set; }
+        [XmlElement("membersCount")]
+        public int MembersCount { get; set; }
+        [XmlElement("openProspectsCount")]
+        public int OpenProspectsCount { get; set; }
+
+        [XmlElement("event")]
+        public ParentNamedObject Event { get; set; }
 
         [XmlIgnore]
         public DateTime? CreatedDate {
