@@ -104,4 +104,15 @@ namespace FellowshipOne.Api.Groups.Model {
             }
         }
     }
+
+    [Serializable]
+    [XmlRoot("groupTypes")]
+    public class GroupTypeCollection : Collection<GroupType> {
+        public GroupTypeCollection() { }
+        public GroupTypeCollection(List<GroupType> groupTypes) {
+            if (groupTypes != null) {
+                this.AddRange(groupTypes);
+            }
+        }
+    }
 }

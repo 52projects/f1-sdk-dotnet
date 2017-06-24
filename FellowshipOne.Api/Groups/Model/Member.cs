@@ -11,16 +11,16 @@ namespace FellowshipOne.Api.Groups.Model {
     [Serializable]
     [XmlRoot("member")]
     public partial class Member : APIModel {
-        private ParentObject _group = new ParentObject();
+        private ParentNamedObject _group = new ParentNamedObject();
         [XmlElement("group")]
-        public ParentObject Group {
+        public ParentNamedObject Group {
             get { return _group; }
             set { _group = value; }
         }
 
-        private ParentObject _person = new ParentObject();
+        private ParentNamedObject _person = new ParentNamedObject();
         [XmlElement("person")]
-        public ParentObject Person {
+        public ParentNamedObject Person {
             get { return _person; }
             set { _person = value; }
         }
@@ -35,8 +35,22 @@ namespace FellowshipOne.Api.Groups.Model {
         [XmlElement("createdDate")]
         public DateTime? CreatedDate { get; set; }
 
+        private ParentObject _createdByPerson = new ParentObject();
+        [XmlElement("createdByPerson")]
+        public ParentObject CreatedByPerson {
+            get { return this._createdByPerson; }
+            set { this._createdByPerson = value; }
+        }
+
         [XmlElement("lastUpdatedDate")]
         public DateTime? LastUpdatedDate { get; set; }
+
+        private ParentObject _lastUpdatedByPerson = new ParentObject();
+        [XmlElement("lastUpdatedByPerson")]
+        public ParentObject LastUpdatedByPerson {
+            get { return this._lastUpdatedByPerson; }
+            set { this._lastUpdatedByPerson = value; }
+        }
     }
 
     [Serializable]
