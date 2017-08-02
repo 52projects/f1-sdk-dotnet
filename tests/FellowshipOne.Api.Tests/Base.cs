@@ -9,7 +9,7 @@ namespace FellowshipOne.Api.Tests {
         internal F1OAuthTicket Ticket;
         internal int _testIndividualID;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup() {
             this.Ticket = new F1OAuthTicket {
                 ConsumerKey = ConfigurationManager.AppSettings["Consumer.Key"],
@@ -20,8 +20,7 @@ namespace FellowshipOne.Api.Tests {
             };
 
             RestClient = new RestClient(this.Ticket, false);
-
-            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], ConfigurationManager.AppSettings["API.Url"], "v1/PortalUser/AccessToken");
+            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["Church.Code"], ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], "v1/PortalUser/AccessToken");
 
             this.Ticket.AccessToken = oauth.AccessToken;
             this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;

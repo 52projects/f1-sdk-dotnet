@@ -90,7 +90,8 @@ namespace FellowshipOne.Api {
             }
         }
 
-        public static OAuthTicket AuthorizeWithCredentials(OAuthTicket ticket, string username, string password, string baseUrl, string authorizeUrl) {
+        public static OAuthTicket AuthorizeWithCredentials(OAuthTicket ticket, string churchCode, string username, string password, string authorizeUrl, bool isStaging = false) {
+            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", churchCode) : string.Format("https://{0}.fellowshiponeapi.com/", churchCode);
             var restClient = new RestSharp.RestClient(baseUrl);
             restClient.Authenticator = OAuth1Authenticator.ForClientAuthentication(ticket.ConsumerKey, ticket.ConsumerSecret, username, password);
 

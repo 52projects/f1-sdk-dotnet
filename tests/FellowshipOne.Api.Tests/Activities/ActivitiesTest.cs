@@ -1,13 +1,6 @@
-﻿using FellowshipOne.Api.Activities.Model;
-using FellowshipOne.Api.Model;
+﻿using FellowshipOne.Api.Activities.QueryObject;
 using NUnit.Framework;
-
 using Shouldly;
-using FellowshipOne.Api.People.QueryObject;
-using System.Configuration;
-using System.Collections.Generic;
-using System;
-using FellowshipOne.Api.Activities.QueryObject;
 
 namespace FellowshipOne.Api.Tests.Activities {
     [TestFixture]

@@ -25,9 +25,7 @@ namespace FellowshipOne.Api.Tests.Giving {
                 },
                 ConfigurationManager.AppSettings["Username"],
                 ConfigurationManager.AppSettings["Password"],
-                LoginType.PortalUser,
-                ConfigurationManager.AppSettings["API.Url"],
-                false
+                LoginType.PortalUser
             );
 
             _client = new RestClient(oAuth, ConfigurationManager.AppSettings["API.Url"], false, false);

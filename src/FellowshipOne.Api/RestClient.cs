@@ -58,14 +58,6 @@ namespace FellowshipOne.Api {
             return BuildTicket(ticket, authUrl, "v1/Tokens/AccessToken");
         }
 
-        public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, bool isStaging = false, bool useDemo = false) {
-            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
-            var authUrl = "v1/" + loginType.ToString() + "/AccessToken";
-
-            BaseClient client = new BaseClient(ticket, baseUrl);
-            return BuildTicket(ticket, username, password, client, authUrl);
-        }
-
         public static F1OAuthTicket GetRequestToken(F1OAuthTicket ticket, bool isStaging = false, bool useDemo = false) {
             BaseClient client = new BaseClient(ticket);
             var requestTokenUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
@@ -76,10 +68,23 @@ namespace FellowshipOne.Api {
             return ticket;
         }
 
-        public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, string baseUrl, bool isSecure = false, bool isStaging = false, bool useDemo = false)
+        public static string CreateAuthorizationUrl(F1OAuthTicket ticket, string callbackurl, bool isStaging = false) {
+            var loginUrl = new System.Text.StringBuilder();
+            loginUrl.Append(isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode));
+            loginUrl.Append("/v1/PortalUser/Login?oauth_token=");
+            loginUrl.Append(ticket.AccessToken);
+            loginUrl.Append("&oauth_token_secret=");
+            loginUrl.Append(ticket.AccessTokenSecret);
+            loginUrl.Append("&oauth_callback=");
+            loginUrl.Append(callbackurl);
+            return loginUrl.ToString();
+        }
+
+        public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, bool isStaging = false)
         {
+            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com", ticket.ChurchCode);
             var client = new BaseClient(ticket);
-            var authUrl = string.Format("{0}://{1}.{2}/{3}/{4}/{5}", isSecure == true ? "https" : "http", ticket.ChurchCode, baseUrl, "v1", loginType, "AccessToken");
+            var authUrl = string.Format("{0}/{1}/{2}/{3}", baseUrl, "v1", loginType, "AccessToken");
             return BuildTicket(ticket, username, password, client, authUrl);
         }
 
