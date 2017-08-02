@@ -104,7 +104,7 @@
     <Folder Include="Communication\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FellowshipOne.Api\FellowshipOne.Api.csproj">
+    <ProjectReference Include="..\..\src\FellowshipOne.Api\FellowshipOne.Api.csproj">
       <Project>{b2ea4e55-179e-428b-afe7-d6e36b78e090}</Project>
       <Name>FellowshipOne.Api</Name>
     </ProjectReference>

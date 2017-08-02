@@ -1,22 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FellowshipOne.Api", "FellowshipOne.Api\FellowshipOne.Api.csproj", "{B2EA4E55-179E-428B-AFE7-D6E36B78E090}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B23FA72A-FE17-465F-A330-B92D88AFA913}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FellowshipOne.Api.Tests", "FellowshipOne.Api.Tests\FellowshipOne.Api.Tests.csproj", "{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{65521EDA-48F7-47B2-803E-6326CC2A0A45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FellowshipOne.Api", "src\FellowshipOne.Api\FellowshipOne.Api.csproj", "{B2EA4E55-179E-428B-AFE7-D6E36B78E090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FellowshipOne.Api.Tests", "tests\FellowshipOne.Api.Tests\FellowshipOne.Api.Tests.csproj", "{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AzureDev|Any CPU = AzureDev|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.AzureDev|Any CPU.ActiveCfg = AzureDev|Any CPU
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.AzureDev|Any CPU.Build.0 = AzureDev|Any CPU
 		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2EA4E55-179E-428B-AFE7-D6E36B78E090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.AzureDev|Any CPU.ActiveCfg = Release|Any CPU
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.AzureDev|Any CPU.Build.0 = Release|Any CPU
 		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -24,5 +33,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2EA4E55-179E-428B-AFE7-D6E36B78E090} = {B23FA72A-FE17-465F-A330-B92D88AFA913}
+		{52ED5E40-4202-446B-AC54-0D5C8C3E7CD4} = {65521EDA-48F7-47B2-803E-6326CC2A0A45}
 	EndGlobalSection
 EndGlobal
