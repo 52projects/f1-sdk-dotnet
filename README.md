@@ -4,7 +4,7 @@ Started outlining the Groups Realm in order to grab groups and add members to gr
 
 # FellowshipOne REST API for .NET
 
-Fellowship One provides a simple HTTP-based API for a lot of the features. Learn more at [http://developer.fellowshipone.com][0]
+Fellowship One provides a simple HTTP-based API for a lot of the features. Learn more at [http://developer.fellowshipone.com](http://developer.fellowshipone.com)
 
 ### Adding FellowshipOne libraries to your .NET project
 
