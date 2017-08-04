@@ -83,8 +83,8 @@ namespace FellowshipOne.Api {
         public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, bool isStaging = false)
         {
             var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com", ticket.ChurchCode);
-            var client = new BaseClient(ticket);
-            var authUrl = string.Format("{0}/{1}/{2}/{3}", baseUrl, "v1", loginType, "AccessToken");
+            var client = new BaseClient(ticket, baseUrl);
+            var authUrl = string.Format("v1/{0}/AccessToken", loginType);
             return BuildTicket(ticket, username, password, client, authUrl);
         }
 

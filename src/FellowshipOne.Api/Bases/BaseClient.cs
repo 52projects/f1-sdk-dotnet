@@ -20,6 +20,7 @@ namespace FellowshipOne.Api {
 
         #region Constructor
         public BaseClient(OAuthTicket ticket) {
+            this.Ticket = ticket;
         }
 
         public BaseClient(OAuthTicket ticket, string baseUrl) {
