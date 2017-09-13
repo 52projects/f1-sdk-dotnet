@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FellowshipOne.Api.Enum;
 
 
 namespace FellowshipOne.Api.People.Sets {
@@ -12,9 +13,9 @@ namespace FellowshipOne.Api.People.Sets {
         protected override string GetChildListUrl { get { return CHILD_LIST_URL; } }
 
         #region Methods
-        public List<Model.Attribute> GetAttributesByAttributeGroup(int attributeGroupID) {
-            return base.List(attributeGroupID.ToString());
-        }
+        //public List<Model.Attribute> GetAttributesByAttributeGroup(int attributeGroupID) {
+        //    return base.List(attributeGroupID.ToString());
+        //}
         #endregion Methods
     }
 }

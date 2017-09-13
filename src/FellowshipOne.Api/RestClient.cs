@@ -1,77 +1,74 @@
 ﻿using System;
-using System.Net;
-using FellowshipOne.Api.Model;
-using RestSharp;
-using RestSharp.Authenticators;
-using System.Diagnostics;
-using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
-
-using System.Security;
+using System.Net;
 using System.Runtime.InteropServices;
-using RestSharp.Extensions.MonoHttp;
+using System.Security;
+using FellowshipOne.Api.OAuth;
+using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace FellowshipOne.Api {
-    public class RestClient : BaseClient {
+    public class RestClient {
 
         #region Properties
-        F1OAuthTicket _ticket { get; set; }
-        bool _useDemo = false;
+        private F1OAuthTicket _ticket { get; set; }
+        private bool _useDemo = false;
+        private readonly string _baseUrl;
 
         #region API Sets
-        public FellowshipOne.Api.Realms.Person PeopleRealm;
-        public FellowshipOne.Api.Realms.Giving GivingRealm;
-        public FellowshipOne.Api.Realms.F1Activities ActivitiesRealm;
-        public FellowshipOne.Api.Realms.GroupsRealm GroupRealm;
+        //public FellowshipOne.Api.Realms.Person PeopleRealm;
+        //public FellowshipOne.Api.Realms.Giving GivingRealm;
+        //public FellowshipOne.Api.Realms.F1Activities ActivitiesRealm;
+        //public FellowshipOne.Api.Realms.GroupsRealm GroupRealm;
         #endregion API Sets
 
         #endregion Properties
 
         #region Constructor
-        public RestClient(F1OAuthTicket ticket, bool isStaging = false, bool useDemo = false)
-            : base(ticket) {
+        public RestClient(F1OAuthTicket ticket, bool isStaging = false, bool useDemo = false) {
             var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
-            
+            _baseUrl = baseUrl;
             SetProperties(ticket, useDemo, baseUrl);
+
+            Utility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
         }
-        public RestClient(F1OAuthTicket ticket, string baseUrl, bool isSecure = false, bool useDemo = false)
-            : base(ticket) {
+
+        public RestClient(F1OAuthTicket ticket, string baseUrl, bool isSecure = false, bool useDemo = false) {
             var url = string.Format("{0}://{1}.{2}/", isSecure == true ? "https" : "http", ticket.ChurchCode, baseUrl);
             SetProperties(ticket, useDemo, url);
-        }
-        private void SetProperties(F1OAuthTicket ticket, bool useDemo, string baseUrl) {
-            _ticket = ticket;
-            _useDemo = useDemo;
-            PeopleRealm = new Realms.Person(ticket, baseUrl);
-            GivingRealm = new Realms.Giving(ticket, baseUrl);
-            ActivitiesRealm = new Realms.F1Activities(ticket, baseUrl);
-            GroupRealm = new Realms.GroupsRealm(ticket, baseUrl);
         }
 
         #endregion Constructor
 
         #region Methods
-        public static F1OAuthTicket ExchangeRequestToken(F1OAuthTicket ticket, bool isStaging = false, bool useDemo = false) {
-            BaseClient client = new BaseClient(ticket);
-            var authUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
-            return BuildTicket(ticket, authUrl, "v1/Tokens/AccessToken");
+        public async Task<F1OAuthTicket> ExchangeRequestTokenAsync(string accessToken, string accessTokenSecret, bool isStaging = false, bool useDemo = false) {
+            var authUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", _ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", _ticket.ChurchCode);
+            authUrl += "v1/Tokens/AccessToken";
+
+            var requestToken = new RequestToken(accessToken, accessTokenSecret);
+            var authorizer = new Authorizer(_ticket.ConsumerKey, _ticket.ConsumerSecret);
+            var tokenResponse = await authorizer.GetAccessTokenAsync(authUrl, requestToken, null);
+
+            _ticket.AccessToken = tokenResponse.Token.Key;
+            _ticket.AccessTokenSecret = tokenResponse.Token.Secret;
+            return _ticket;
         }
 
-        public static F1OAuthTicket GetRequestToken(F1OAuthTicket ticket, bool isStaging = false, bool useDemo = false) {
-            BaseClient client = new BaseClient(ticket);
-            var requestTokenUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
+        public async Task<F1OAuthTicket> GetRequestTokenAsync() {
+            var requestTokenUrl = _baseUrl + "v1/Tokens/RequestToken";
+            var authorizer = new Authorizer(_ticket.ConsumerKey, _ticket.ConsumerSecret);
 
-            var oauthTicket = BaseClient.GetRequestToken(ticket, "myapp.com", "v1/RequestToken", requestTokenUrl);
-            ticket.AccessToken = oauthTicket.AccessToken;
-            ticket.AccessTokenSecret = oauthTicket.AccessTokenSecret;
-            return ticket;
+            var tokenResponse = await authorizer.GetRequestTokenAsync(requestTokenUrl);
+            var requestToken = tokenResponse.Token;
+            _ticket.AccessToken = requestToken.Key;
+            _ticket.AccessTokenSecret = requestToken.Secret;
+            return _ticket;
         }
 
-        public static string CreateAuthorizationUrl(F1OAuthTicket ticket, string callbackurl, bool isStaging = false) {
+        public string CreateAuthorizationUrl(F1OAuthTicket ticket, string callbackurl) {
             var loginUrl = new System.Text.StringBuilder();
-            loginUrl.Append(isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode));
-            loginUrl.Append("/v1/PortalUser/Login?oauth_token=");
+            loginUrl.Append(_baseUrl);
+            loginUrl.Append("v1/PortalUser/Login?oauth_token=");
             loginUrl.Append(ticket.AccessToken);
             loginUrl.Append("&oauth_token_secret=");
             loginUrl.Append(ticket.AccessTokenSecret);
@@ -79,46 +76,55 @@ namespace FellowshipOne.Api {
             loginUrl.Append(callbackurl);
             return loginUrl.ToString();
         }
-
-        public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, bool isStaging = false)
-        {
-            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com", ticket.ChurchCode);
-            var client = new BaseClient(ticket, baseUrl);
-            var authUrl = string.Format("v1/{0}/AccessToken", loginType);
-            return BuildTicket(ticket, username, password, client, authUrl);
+        
+        public void UpdateTokens(string accessToken, string accessTokenSecret) {
+            _ticket.AccessToken = accessToken;
+            _ticket.AccessTokenSecret = accessTokenSecret;
         }
 
-        private static F1OAuthTicket BuildTicket(F1OAuthTicket ticket, string username, string password, BaseClient client, string authUrl) {
-            IRestResponse response = client.AuthorizeFirstParty(ticket, username, password, authUrl);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-                throw new Exception(response.StatusDescription);
-            else {
-                var qs = HttpUtility.ParseQueryString(response.Content);
-                ticket.AccessToken = qs["oauth_token"];
-                ticket.AccessTokenSecret = qs["oauth_token_secret"];
-                if (response.Headers.SingleOrDefault(x => x.Name == "Content-Location") != null) {
-                    ticket.PersonURL = response.Headers.SingleOrDefault(x => x.Name == "Content-Location").Value.ToString();
-                }
-            }
-            return ticket;
+        public void UpdateChurchCode(string churchCode) {
+            _ticket.ChurchCode = churchCode;
         }
 
-        private static F1OAuthTicket BuildTicket(F1OAuthTicket ticket, string baseurl, string authUrl) {
-            IRestResponse response = BaseClient.ExchangeRequestToken(ticket, baseurl, authUrl);
+        //public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, bool isStaging = false)
+        //{
+        //    var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com", ticket.ChurchCode);
+        //    var client = new BaseClient(ticket, baseUrl);
+        //    var authUrl = string.Format("v1/{0}/AccessToken", loginType);
+        //    return BuildTicket(ticket, username, password, client, authUrl);
+        //}
 
-            if (response.StatusCode != HttpStatusCode.OK)
-                throw new Exception(response.StatusDescription);
-            else {
-                var qs = HttpUtility.ParseQueryString(response.Content);
-                ticket.AccessToken = qs["oauth_token"];
-                ticket.AccessTokenSecret = qs["oauth_token_secret"];
-                if (response.Headers.SingleOrDefault(x => x.Name == "Content-Location") != null) {
-                    ticket.PersonURL = response.Headers.SingleOrDefault(x => x.Name == "Content-Location").Value.ToString();
-                }
-            }
-            return ticket;
-        }
+        //private static F1OAuthTicket BuildTicket(F1OAuthTicket ticket, string username, string password, BaseClient client, string authUrl) {
+        //    IRestResponse response = client.AuthorizeFirstParty(ticket, username, password, authUrl);
+
+        //    if (response.StatusCode != HttpStatusCode.OK)
+        //        throw new Exception(response.StatusDescription);
+        //    else {
+        //        var qs = HttpUtility.ParseQueryString(response.Content);
+        //        ticket.AccessToken = qs["oauth_token"];
+        //        ticket.AccessTokenSecret = qs["oauth_token_secret"];
+        //        if (response.Headers.SingleOrDefault(x => x.Name == "Content-Location") != null) {
+        //            ticket.PersonURL = response.Headers.SingleOrDefault(x => x.Name == "Content-Location").Value.ToString();
+        //        }
+        //    }
+        //    return ticket;
+        //}
+
+        //private F1OAuthTicket BuildTicket(F1OAuthTicket ticket, string baseurl, string authUrl) {
+        //    IRestResponse response = BaseClient.ExchangeRequestToken(ticket, baseurl, authUrl);
+
+        //    if (response.StatusCode != HttpStatusCode.OK)
+        //        throw new Exception(response.StatusDescription);
+        //    else {
+        //        var qs = HttpUtility.ParseQueryString(response.Content);
+        //        ticket.AccessToken = qs["oauth_token"];
+        //        ticket.AccessTokenSecret = qs["oauth_token_secret"];
+        //        if (response.Headers.SingleOrDefault(x => x.Name == "Content-Location") != null) {
+        //            ticket.PersonURL = response.Headers.SingleOrDefault(x => x.Name == "Content-Location").Value.ToString();
+        //        }
+        //    }
+        //    return ticket;
+        //}
 
         private static String SecureStringToString(SecureString value)
         {
@@ -132,6 +138,15 @@ namespace FellowshipOne.Api {
             {
                 Marshal.FreeBSTR(bstr);
             }
+        }
+
+        private void SetProperties(F1OAuthTicket ticket, bool useDemo, string baseUrl) {
+            _ticket = ticket;
+            _useDemo = useDemo;
+            //PeopleRealm = new Realms.Person(ticket, baseUrl);
+            //GivingRealm = new Realms.Giving(ticket, baseUrl);
+            //ActivitiesRealm = new Realms.F1Activities(ticket, baseUrl);
+            //GroupRealm = new Realms.GroupsRealm(ticket, baseUrl);
         }
 
         #endregion Methods

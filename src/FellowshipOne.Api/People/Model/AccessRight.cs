@@ -1,7 +1,7 @@
 ﻿using System;
-using FellowshipOne.Api.Model;
 using System.Xml;
 using System.Xml.Serialization;
+using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.People.Model {
     [Serializable]

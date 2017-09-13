@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FellowshipOne.Api.Model;
+﻿using FellowshipOne.Api.Model;
 using FellowshipOne.Api.People.Model;
 
 namespace FellowshipOne.Api.People.Fixture {

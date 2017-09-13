@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FellowshipOne.Api.Model;
-
-using RestSharp;
+using FellowshipOne.Api.Enum;
 
 
 namespace FellowshipOne.Api {
@@ -26,133 +23,133 @@ namespace FellowshipOne.Api {
             : base(accessToken, baseUrl, contentType) {
         }
 
-        public virtual F1Collection<T> FindAll(int? page = null, int? pageSize = null) {
-            var collection = new F1Collection<T>();
+        //public virtual F1Collection<T> FindAll(int? page = null, int? pageSize = null) {
+        //    var collection = new F1Collection<T>();
 
-            if (string.IsNullOrWhiteSpace(ListUrl)) {
-                throw new NotImplementedException("The property ListUrl has no value on the ApiSet.");
-            }
+        //    if (string.IsNullOrWhiteSpace(ListUrl)) {
+        //        throw new NotImplementedException("The property ListUrl has no value on the ApiSet.");
+        //    }
 
-            var request = CreateRestRequest(Method.GET, ListUrl);
+        //    var request = CreateRestRequest(Method.GET, ListUrl);
 
-            if (page.HasValue) {
-                request.AddParameter("page", page.Value);
-            }
+        //    if (page.HasValue) {
+        //        request.AddParameter("page", page.Value);
+        //    }
 
-            if (pageSize.HasValue) {
-                request.AddParameter("pageSize", pageSize.Value);
-            }
+        //    if (pageSize.HasValue) {
+        //        request.AddParameter("pageSize", pageSize.Value);
+        //    }
 
-            var item = base.ExecuteListRequest(request);
+        //    var item = base.ExecuteListRequest(request);
 
-            this.PopulateHeaderInformation(collection, item);
-            collection.Items.AddRange(item.Data);
+        //    this.PopulateHeaderInformation(collection, item);
+        //    collection.Items.AddRange(item.Data);
 
-            return collection;
-        }
+        //    return collection;
+        //}
 
-        public virtual F1Collection<T> FindAll(string parentID) {
-            var collection = new F1Collection<T>();
+        //public virtual F1Collection<T> FindAll(string parentID) {
+        //    var collection = new F1Collection<T>();
 
-            if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
-                throw new NotImplementedException("The property GetChildListUrl has no value on the ApiSet.");
-            }
+        //    if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
+        //        throw new NotImplementedException("The property GetChildListUrl has no value on the ApiSet.");
+        //    }
 
-            var request = CreateRestRequest(Method.GET, string.Format(GetChildListUrl, parentID));
-            var item = ExecuteListRequest(request);
+        //    var request = CreateRestRequest(Method.GET, string.Format(GetChildListUrl, parentID));
+        //    var item = ExecuteListRequest(request);
 
-            this.PopulateHeaderInformation(collection, item);
-            collection.Items.AddRange(item.Data);
+        //    this.PopulateHeaderInformation(collection, item);
+        //    collection.Items.AddRange(item.Data);
 
-            return collection;
-        }
+        //    return collection;
+        //}
 
-        public virtual F1Collection<T> FindAll(string parentID, int? page = null) {
-            var collection = new F1Collection<T>();
+        //public virtual F1Collection<T> FindAll(string parentID, int? page = null) {
+        //    var collection = new F1Collection<T>();
 
-            if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
-                throw new NotImplementedException("The property GetChildListUrl has no value on the ApiSet.");
-            }
+        //    if (string.IsNullOrWhiteSpace(GetChildListUrl)) {
+        //        throw new NotImplementedException("The property GetChildListUrl has no value on the ApiSet.");
+        //    }
 
-            var request = CreateRestRequest(Method.GET, string.Format(GetChildListUrl, parentID));
+        //    var request = CreateRestRequest(Method.GET, string.Format(GetChildListUrl, parentID));
 
-            if (page.HasValue) {
-                request.AddParameter("page", page.Value);
-            }
-            
-            var item = ExecuteListRequest(request);
+        //    if (page.HasValue) {
+        //        request.AddParameter("page", page.Value);
+        //    }
 
-            this.PopulateHeaderInformation(collection, item);
-            collection.Items.AddRange(item.Data);
+        //    var item = ExecuteListRequest(request);
 
-            return collection;
-        }
+        //    this.PopulateHeaderInformation(collection, item);
+        //    collection.Items.AddRange(item.Data);
 
-        public virtual F1Collection<T> FindBy(BaseQO qo) {
-            var collection = new F1Collection<T>();
+        //    return collection;
+        //}
 
-            if (string.IsNullOrWhiteSpace(SearchUrl)) {
-                throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
-            }
+        //public virtual F1Collection<T> FindBy(BaseQO qo) {
+        //    var collection = new F1Collection<T>();
 
-            var request = CreateRestRequest(Method.GET, SearchUrl);
+        //    if (string.IsNullOrWhiteSpace(SearchUrl)) {
+        //        throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
+        //    }
 
-            foreach (var pair in qo.ToDictionary()) {
-                request.AddParameter(pair.Key, pair.Value);
-            }
+        //    var request = CreateRestRequest(Method.GET, SearchUrl);
 
-            var item = ExecuteListRequest(request);
+        //    foreach (var pair in qo.ToDictionary()) {
+        //        request.AddParameter(pair.Key, pair.Value);
+        //    }
 
-            this.PopulateHeaderInformation(collection, item);
-            collection.Items.AddRange(item.Data);
+        //    var item = ExecuteListRequest(request);
 
-            return collection;
-        }
+        //    this.PopulateHeaderInformation(collection, item);
+        //    collection.Items.AddRange(item.Data);
 
-        public virtual F1Collection<T> FindBy(string parentID, BaseQO qo) {
-            var collection = new F1Collection<T>();
+        //    return collection;
+        //}
 
-            if (string.IsNullOrWhiteSpace(SearchUrl)) {
-                throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
-            }
+        //public virtual F1Collection<T> FindBy(string parentID, BaseQO qo) {
+        //    var collection = new F1Collection<T>();
 
-            var request = CreateRestRequest(Method.GET, string.Format(SearchUrl, parentID));
+        //    if (string.IsNullOrWhiteSpace(SearchUrl)) {
+        //        throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
+        //    }
 
-            foreach (var pair in qo.ToDictionary()) {
-                request.AddParameter(pair.Key, pair.Value);
-            }
+        //    var request = CreateRestRequest(Method.GET, string.Format(SearchUrl, parentID));
 
-            var item = ExecuteListRequest(request);
+        //    foreach (var pair in qo.ToDictionary()) {
+        //        request.AddParameter(pair.Key, pair.Value);
+        //    }
 
-            this.PopulateHeaderInformation(collection, item);
-            collection.Items.AddRange(item.Data);
+        //    var item = ExecuteListRequest(request);
 
-            return collection;
-        }
+        //    this.PopulateHeaderInformation(collection, item);
+        //    collection.Items.AddRange(item.Data);
 
-        private void PopulateHeaderInformation(F1Collection<T> collection, IRestResponse response) {
-            for (int i = 0; i < response.Headers.Count; i++) {
-                int value = 0;
+        //    return collection;
+        //}
 
-                if (!int.TryParse(response.Headers[i].Value.ToString(), out value)) {
-                    continue;
-                }
+        //private void PopulateHeaderInformation(F1Collection<T> collection, IRestResponse response) {
+        //    for (int i = 0; i < response.Headers.Count; i++) {
+        //        int value = 0;
 
-                switch (response.Headers[i].Name) {
-                    case "X-Pagination-Current-Page":
-                        collection.CurrentPage = value;
-                        break;
-                    case "X-Pagination-Total-Count":
-                        collection.TotalCount = value;
-                        break;
-                    case "X-Pagination-Total-Pages":
-                        collection.TotalPages = value;
-                        break;
-                    case "X-Pagination-Page-Size":
-                        collection.PageSize = value;
-                        break;
-                }
-            }
-        }
+        //        if (!int.TryParse(response.Headers[i].Value.ToString(), out value)) {
+        //            continue;
+        //        }
+
+        //        switch (response.Headers[i].Name) {
+        //            case "X-Pagination-Current-Page":
+        //                collection.CurrentPage = value;
+        //                break;
+        //            case "X-Pagination-Total-Count":
+        //                collection.TotalCount = value;
+        //                break;
+        //            case "X-Pagination-Total-Pages":
+        //                collection.TotalPages = value;
+        //                break;
+        //            case "X-Pagination-Page-Size":
+        //                collection.PageSize = value;
+        //                break;
+        //        }
+        //    }
+        //}
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using RestSharp;
+﻿using FellowshipOne.Api.Enum;
 
 namespace FellowshipOne.Api.Giving.Sets {
     public class ReferenceImages : ApiSet<dynamic> {

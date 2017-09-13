@@ -1,4 +1,5 @@
-﻿
+﻿using FellowshipOne.Api.Enum;
+
 namespace FellowshipOne.Api.People.Sets {
     public class Accounts : ApiSet<Model.School> {
         private const string CREATE_URL = "/v1/people/accounts";

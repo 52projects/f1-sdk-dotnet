@@ -1,4 +1,5 @@
-﻿
+﻿using FellowshipOne.Api.Enum;
+using System.Threading.Tasks;
 
 namespace FellowshipOne.Api.People.Sets {
     public class Communications : ApiSet<Model.Communication> {
@@ -21,30 +22,30 @@ namespace FellowshipOne.Api.People.Sets {
         protected override string CreateUrl { get { return CREATE_URL; } }
         protected override string EditUrl { get { return editUrl; } }
 
-        public Model.Communication CreateForPerson(int personID, Model.Communication entity) {
-            var url = string.Format(CREATE_INDIVIDUAL_COMMUNICATION_URL, personID);
-            return Create(entity, url);
-        }
+        //public Model.Communication CreateForPerson(int personID, Model.Communication entity) {
+        //    var url = string.Format(CREATE_INDIVIDUAL_COMMUNICATION_URL, personID);
+        //    return Create(entity, url);
+        //}
 
-        public Model.Communication CreateForPerson(int personID, Model.Communication entity, out string requestXml) {
-            var url = string.Format(CREATE_INDIVIDUAL_COMMUNICATION_URL, personID);
-            return Create(entity, out requestXml, url);
-        }
+        //public Model.Communication CreateForPerson(int personID, Model.Communication entity, out string requestXml) {
+        //    var url = string.Format(CREATE_INDIVIDUAL_COMMUNICATION_URL, personID);
+        //    return Create(entity, out requestXml, url);
+        //}
 
-        public Model.Communication CreateForHousehold(int householdID, Model.Communication entity) {
-            var url = string.Format(CREATE_HOUSEHOLD_COMMUNICATION_URL, householdID);
-            return Create(entity, url);
-        }
+        //public Model.Communication CreateForHousehold(int householdID, Model.Communication entity) {
+        //    var url = string.Format(CREATE_HOUSEHOLD_COMMUNICATION_URL, householdID);
+        //    return Create(entity, url);
+        //}
 
-        public Model.Communication CreateForHousehold(int householdID, Model.Communication entity, out string requestXml) {
-            var url = string.Format(CREATE_HOUSEHOLD_COMMUNICATION_URL, householdID);
-            return Create(entity, out requestXml, url);
-        }
+        //public Model.Communication CreateForHousehold(int householdID, Model.Communication entity, out string requestXml) {
+        //    var url = string.Format(CREATE_HOUSEHOLD_COMMUNICATION_URL, householdID);
+        //    return Create(entity, out requestXml, url);
+        //}
 
-        public void DeleteForHousehold(int id, int householdID) {
-            editUrl = string.Format(DELETE_HOUSEHOLD_COMMUNICATION_URL, householdID, id);
-            Delete(id.ToString());
-            editUrl = EDIT_URL;
-        }
+        //public void DeleteForHousehold(int id, int householdID) {
+        //    editUrl = string.Format(DELETE_HOUSEHOLD_COMMUNICATION_URL, householdID, id);
+        //    Delete(id.ToString());
+        //    editUrl = EDIT_URL;
+        //}
     }
 }

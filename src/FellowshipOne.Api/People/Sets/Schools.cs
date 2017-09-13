@@ -1,4 +1,5 @@
-﻿
+﻿using FellowshipOne.Api.Enum;
+
 namespace FellowshipOne.Api.People.Sets {
     public class Schools : ApiSet<Model.School> {
         private const string GET_URL = "/v1/people/schools/{0}";

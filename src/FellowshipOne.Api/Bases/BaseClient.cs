@@ -1,11 +1,8 @@
-﻿using RestSharp;
-using RestSharp.Authenticators;
-using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Collections.Generic;
-using RestSharp.Extensions.MonoHttp;
+using System.Threading.Tasks;
 using FellowshipOne.Api.Exceptions;
+using FellowshipOne.Api.OAuth;
 using Newtonsoft.Json.Linq;
 
 namespace FellowshipOne.Api {
@@ -58,67 +55,92 @@ namespace FellowshipOne.Api {
             }
         }
 
-        public static F1OAuthTicket AuthorizeWithCredentials(F1OAuthTicket ticket, string username, string password, bool isStaging) {
-            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
-            var restClient = new RestSharp.RestClient(baseUrl);
+        //public static async Task<F1OAuthTicket> AuthorizeWithCredentialsAsync(F1OAuthTicket ticket, string username, string password, bool isStaging) {
+        //    var authorizer = new Authorizer(ticket.ConsumerKey, ticket.ConsumerSecret);
 
-            var request = new RestRequest("v1/oauth2/token", Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            request.AddParameter("client_id", ticket.ConsumerKey);
-            request.AddParameter("client_secret", ticket.ConsumerSecret);
-            request.AddParameter("username", username);
-            request.AddParameter("password", password);
-            request.AddParameter("grant_type", "password");
+        //    // get request token
+        //    var tokenResponse = await authorizer.GetRequestToken("https://api.twitter.com/oauth/request_token");
+        //    var requestToken = tokenResponse.Token;
+
+        //    var pinRequestUrl = authorizer.BuildAuthorizeUrl("https://api.twitter.com/oauth/authorize", requestToken);
+
+        //    var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
+        //    var restClient = new RestSharp.RestClient(baseUrl);
+
+        //    var request = new RestRequest("v1/oauth2/token", Method.POST);
+        //    request.AddHeader("Content-Type", "application/json");
+        //    request.AddParameter("client_id", ticket.ConsumerKey);
+        //    request.AddParameter("client_secret", ticket.ConsumerSecret);
+        //    request.AddParameter("username", username);
+        //    request.AddParameter("password", password);
+        //    request.AddParameter("grant_type", "password");
             
-            var response = restClient.Execute(request);
+        //    var response = restClient.Execute(request);
 
-            if (response.StatusCode != HttpStatusCode.OK) {
-                throw new ApiAccessException(response.StatusDescription) {
-                    StatusCode = response.StatusCode,
-                    StatusDescription = response.StatusDescription,
-                    RequestUrl = response.ResponseUri.AbsoluteUri
-                };
-            }
-            else {
-                var json = JObject.Parse(response.Content);
+        //    if (response.StatusCode != HttpStatusCode.OK) {
+        //        throw new ApiAccessException(response.StatusDescription) {
+        //            StatusCode = response.StatusCode,
+        //            StatusDescription = response.StatusDescription,
+        //            RequestUrl = response.ResponseUri.AbsoluteUri
+        //        };
+        //    }
+        //    else {
+        //        var json = JObject.Parse(response.Content);
 
-                ticket.AccessToken = json.SelectToken("access_token").ToString();
-                ticket.TokenType = json.SelectToken("token_type").ToString();
-                ticket.RefreshToken = json.SelectToken("refresh_token").ToString();
-                ticket.ExpiresIn = decimal.Parse(json.SelectToken("expires_in").ToString());
-                ticket.PersonID = int.Parse(json.SelectToken("person").SelectToken("id").ToString());
-                return ticket;
-            }
-        }
+        //        ticket.AccessToken = json.SelectToken("access_token").ToString();
+        //        ticket.TokenType = json.SelectToken("token_type").ToString();
+        //        ticket.RefreshToken = json.SelectToken("refresh_token").ToString();
+        //        ticket.ExpiresIn = decimal.Parse(json.SelectToken("expires_in").ToString());
+        //        ticket.PersonID = int.Parse(json.SelectToken("person").SelectToken("id").ToString());
+        //        return ticket;
+        //    }
+        //}
 
-        public static OAuthTicket AuthorizeWithCredentials(OAuthTicket ticket, string churchCode, string username, string password, string authorizeUrl, bool isStaging = false) {
-            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", churchCode) : string.Format("https://{0}.fellowshiponeapi.com/", churchCode);
-            var restClient = new RestSharp.RestClient(baseUrl);
-            restClient.Authenticator = OAuth1Authenticator.ForClientAuthentication(ticket.ConsumerKey, ticket.ConsumerSecret, username, password);
+        //public static OAuthTicket AuthorizeWithCredentials(OAuthTicket ticket, string churchCode, string username, string password, string authorizeUrl, bool isStaging = false) {
+        //    var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", churchCode) : string.Format("https://{0}.fellowshiponeapi.com/", churchCode);
+        //    var authorizer = new Authorizer(ticket.ConsumerKey, ticket.ConsumerSecret);
+        //    authorizer.GetAccessTokenAsync(baseUrl + "/" + authorizeUrl, new RequestToken {  })
 
-            var request = new RestRequest(authorizeUrl, Method.POST);
-            byte[] toEncodeAsBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(username + " " + password);
+        //    // get request token
+        //    var tokenResponse = await authorizer.GetRequestToken("https://api.twitter.com/oauth/request_token");
+        //    var requestToken = tokenResponse.Token;
 
-            request.AddHeader("Content-Type", "application/xml");
-            request.AddParameter("ec", System.Convert.ToBase64String(toEncodeAsBytes, 0, toEncodeAsBytes.Length));
-            var response = restClient.Execute(request);
+        //    var pinRequestUrl = authorizer.BuildAuthorizeUrl("https://api.twitter.com/oauth/authorize", requestToken);
+            
+        //    var restClient = new RestSharp.RestClient(baseUrl);
+        //    restClient.Authenticator = OAuth1Authenticator.ForClientAuthentication(ticket.ConsumerKey, ticket.ConsumerSecret, username, password);
 
-            if (response.StatusCode != HttpStatusCode.OK) {
-                throw new ApiAccessException(response.StatusDescription) {
-                    StatusCode = response.StatusCode,
-                    StatusDescription = response.StatusDescription,
-                    RequestUrl = response.ResponseUri.AbsoluteUri
-                };
-            }
-            else {
-                var qs = HttpUtility.ParseQueryString(response.Content);
-                ticket.AccessToken = qs["oauth_token"];
-                ticket.AccessTokenSecret = qs["oauth_token_secret"];
-                return ticket;
-            }
-        }
+        //    var request = new RestRequest(authorizeUrl, Method.POST);
+        //    byte[] toEncodeAsBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(username + " " + password);
 
-        public static OAuthTicket GetRequestToken(OAuthTicket ticket, string callback, string requestTokenUrl, string baseUrl) {
+        //    request.AddHeader("Content-Type", "application/xml");
+        //    request.AddParameter("ec", System.Convert.ToBase64String(toEncodeAsBytes, 0, toEncodeAsBytes.Length));
+        //    var response = restClient.Execute(request);
+
+        //    if (response.StatusCode != HttpStatusCode.OK) {
+        //        throw new ApiAccessException(response.StatusDescription) {
+        //            StatusCode = response.StatusCode,
+        //            StatusDescription = response.StatusDescription,
+        //            RequestUrl = response.ResponseUri.AbsoluteUri
+        //        };
+        //    }
+        //    else {
+        //        var qs = HttpUtility.ParseQueryString(response.Content);
+        //        ticket.AccessToken = qs["oauth_token"];
+        //        ticket.AccessTokenSecret = qs["oauth_token_secret"];
+        //        return ticket;
+        //    }
+        //}
+
+        public static async Task<OAuthTicket> GetRequestTokenAsync(OAuthTicket ticket, string callback, string requestTokenUrl, bool isStaging) {
+            var requestTokenUrl = "https://demo.fellowshiponeapi.com/v1/Tokens/RequestToken";
+            var authorizer = new Authorizer(ticket.ConsumerKey, ticket.ConsumerSecret);
+
+            // get request token
+            var tokenResponse = await authorizer.GetRequestTokenAsync(baseUrl);
+            var requestToken = tokenResponse.Token;
+
+            var pinRequestUrl = authorizer.BuildAuthorizeUrl("https://api.twitter.com/oauth/authorize", requestToken);
             var restClient = new RestSharp.RestClient(baseUrl);
             restClient.Authenticator = OAuth1Authenticator.ForRequestToken(ticket.ConsumerKey, ticket.ConsumerSecret, callback);
 

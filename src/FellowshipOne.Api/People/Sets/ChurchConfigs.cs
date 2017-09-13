@@ -1,7 +1,5 @@
-﻿using System.Text;
-using System.Threading.Tasks;
-using FellowshipOne.Api.Model;
-
+﻿using System.Threading.Tasks;
+using FellowshipOne.Api.Enum;
 using FellowshipOne.Api.People.Model;
 
 namespace FellowshipOne.Api.People.Sets {
@@ -19,8 +17,8 @@ namespace FellowshipOne.Api.People.Sets {
         #endregion Properties
 
         #region Methods
-        public ChurchConfig Get() {
-            return base.Get(string.Empty);
+        public async Task<ChurchConfig> Get() {
+            return await GetAsync(string.Empty);
         }
         #endregion
     }

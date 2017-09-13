@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FellowshipOne.Api.Model;
 using System.Xml;
 using System.Xml.Serialization;
+using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.People.Model {
     [XmlRoot("attribute")]

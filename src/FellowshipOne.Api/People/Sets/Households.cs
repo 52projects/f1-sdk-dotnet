@@ -1,4 +1,4 @@
-﻿
+﻿using FellowshipOne.Api.Enum;
 using FellowshipOne.Api.People.Model;
 using System.Collections.Generic;
 

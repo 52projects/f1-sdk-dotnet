@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FellowshipOne.Api.Giving.Model;
-
-using RestSharp;
 
 namespace FellowshipOne.Api.Giving.Sets {
     public class RDCBatchItems : ApiSet<Model.RDCBatchItem> {

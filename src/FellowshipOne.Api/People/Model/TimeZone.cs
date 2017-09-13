@@ -1,9 +1,6 @@
-﻿using FellowshipOne.Api.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Xml.Serialization;
+using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.People.Model {
     [Serializable]

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using FellowshipOne.Api.People.Model;
-
+using FellowshipOne.Api.Enum;
 
 namespace FellowshipOne.Api.People.Sets {
     public class Addresses : ApiSet<Model.Address> {
@@ -28,29 +28,29 @@ namespace FellowshipOne.Api.People.Sets {
         }
 
 
-        public Model.Address CreateForPerson(int personID, Model.Address entity) {
-            var url = string.Format(CREATE_INDIVIDUAL_ADDRESS_URL, personID);
-            return Create(entity, url);
-        }
+        //public Model.Address CreateForPerson(int personID, Model.Address entity) {
+        //    var url = string.Format(CREATE_INDIVIDUAL_ADDRESS_URL, personID);
+        //    return Create(entity, url);
+        //}
 
-        public Model.Address CreateForPerson(int personID, Model.Address entity, out string requestXml) {
-            var url = string.Format(CREATE_INDIVIDUAL_ADDRESS_URL, personID);
-            return Create(entity, out requestXml, url);
-        }
+        //public Model.Address CreateForPerson(int personID, Model.Address entity, out string requestXml) {
+        //    var url = string.Format(CREATE_INDIVIDUAL_ADDRESS_URL, personID);
+        //    return Create(entity, out requestXml, url);
+        //}
 
-        public Model.Address CreateForHousehold(int householdID, Model.Address entity) {
-            var url = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
-            return Create(entity, url);
-        }
+        //public Model.Address CreateForHousehold(int householdID, Model.Address entity) {
+        //    var url = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
+        //    return Create(entity, url);
+        //}
 
-        public Model.Address CreateForHousehold(int householdID, Model.Address entity, out string requestXml) {
-            var url = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
-            return Create(entity, out requestXml, url);
-        }
+        //public Model.Address CreateForHousehold(int householdID, Model.Address entity, out string requestXml) {
+        //    var url = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
+        //    return Create(entity, out requestXml, url);
+        //}
 
-        public List<Address> GetHouseholdAddresses(string householdID) {
-            _listUrl = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
-            return List();
-        }
+        //public List<Address> GetHouseholdAddresses(string householdID) {
+        //    _listUrl = string.Format(CREATE_HOUSEHOLD_ADDRESS_URL, householdID);
+        //    return List();
+        //}
     }
 }

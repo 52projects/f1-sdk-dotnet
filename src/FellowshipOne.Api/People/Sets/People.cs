@@ -1,4 +1,4 @@
-﻿
+﻿using FellowshipOne.Api.Enum;
 using System.IO;
 
 namespace FellowshipOne.Api.People.Sets {
@@ -19,21 +19,21 @@ namespace FellowshipOne.Api.People.Sets {
         protected override string CreateUrl { get { return CREATE_URL; } }
         protected override string EditUrl { get { return EDIT_URL; } }
 
-        public byte[] GetImage(string id, string size = "M") {
-            var url = string.Format(IMAGE_URL, id, size);
-            return this.GetByteArray(url);
-        }
+        //public byte[] GetImage(string id, string size = "M") {
+        //    var url = string.Format(IMAGE_URL, id, size);
+        //    return this.GetByteArray(url);
+        //}
 
-        public void CreateImage(string id, byte[] image, string filename, string fileType) {
-            var request = this.CreateRestRequest(RestSharp.Method.POST, string.Format(IMAGE_URL, id), "image/jpeg");
-            request.AddParameter("image", image, RestSharp.ParameterType.RequestBody);
-            var response = this.ExecuteGenericRequest(request);
-        }
+        //public void CreateImage(string id, byte[] image, string filename, string fileType) {
+        //    var request = this.CreateRestRequest(RestSharp.Method.POST, string.Format(IMAGE_URL, id), "image/jpeg");
+        //    request.AddParameter("image", image, RestSharp.ParameterType.RequestBody);
+        //    var response = this.ExecuteGenericRequest(request);
+        //}
 
-        public void UpdateImage(string id, byte[] image, string filename, string fileType, string imageID) {
-            var request = this.CreateRestRequest(RestSharp.Method.PUT, string.Format(IMAGE_UPDATE_URL, id, imageID), "image/jpeg");
-            request.AddParameter("image", image, RestSharp.ParameterType.RequestBody);
-            var response = this.ExecuteGenericRequest(request);
-        }
+        //public void UpdateImage(string id, byte[] image, string filename, string fileType, string imageID) {
+        //    var request = this.CreateRestRequest(RestSharp.Method.PUT, string.Format(IMAGE_UPDATE_URL, id, imageID), "image/jpeg");
+        //    request.AddParameter("image", image, RestSharp.ParameterType.RequestBody);
+        //    var response = this.ExecuteGenericRequest(request);
+        //}
     }
 }

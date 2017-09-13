@@ -1,9 +1,5 @@
-﻿using FellowshipOne.Api.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
+using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.People.Model {
     public class ChurchConfig : APIModel {
