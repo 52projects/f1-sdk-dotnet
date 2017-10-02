@@ -166,19 +166,14 @@ namespace FellowshipOne.Api {
         //          return item.Content;
         //      }
 
-        //      public virtual S Search<S>(BaseQO qo) where S : new() {
-        //          if (string.IsNullOrWhiteSpace(SearchUrl)) {
-        //              throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
-        //          }
-        //          var request = CreateRestRequest(Method.GET, SearchUrl);
+        public virtual async Task<S> SearchAsync<S>(BaseQO qo) where S : new() {
+            if (string.IsNullOrWhiteSpace(SearchUrl)) {
+                throw new NotImplementedException("The property SearchUrl has no value on the ApiSet.");
+            }
 
-        //          foreach (var pair in qo.ToDictionary()) {
-        //              request.AddParameter(pair.Key, pair.Value);
-        //          }
-
-        //          var list = ExecuteCustomRequest<S>(request);
-        //          return list.Data;
-        //      }
+            var item = await _authorizer.ExecuteGetAsync(_baseUrl + SearchUrl, qo.ToDictionary());
+            return item;
+        }
 
         //      public virtual IRestResponse Post(string url) {
         //          var request = CreateRestRequest(Method.POST, url);

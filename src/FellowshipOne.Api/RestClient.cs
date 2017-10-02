@@ -13,10 +13,11 @@ namespace FellowshipOne.Api {
         #region Properties
         private F1OAuthTicket _ticket { get; set; }
         private bool _useDemo = false;
-        private readonly string _baseUrl;
+        private bool _isStaging = false;
+        private string _baseUrl;
 
         #region API Sets
-        //public FellowshipOne.Api.Realms.Person PeopleRealm;
+        public FellowshipOne.Api.Realms.Person PeopleRealm;
         //public FellowshipOne.Api.Realms.Giving GivingRealm;
         //public FellowshipOne.Api.Realms.F1Activities ActivitiesRealm;
         //public FellowshipOne.Api.Realms.GroupsRealm GroupRealm;
@@ -26,16 +27,10 @@ namespace FellowshipOne.Api {
 
         #region Constructor
         public RestClient(F1OAuthTicket ticket, bool isStaging = false, bool useDemo = false) {
-            var baseUrl = isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", ticket.ChurchCode);
-            _baseUrl = baseUrl;
-            SetProperties(ticket, useDemo, baseUrl);
+            _isStaging = isStaging;
+            SetProperties(ticket, useDemo);
 
             Utility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
-        }
-
-        public RestClient(F1OAuthTicket ticket, string baseUrl, bool isSecure = false, bool useDemo = false) {
-            var url = string.Format("{0}://{1}.{2}/", isSecure == true ? "https" : "http", ticket.ChurchCode, baseUrl);
-            SetProperties(ticket, useDemo, url);
         }
 
         #endregion Constructor
@@ -62,6 +57,7 @@ namespace FellowshipOne.Api {
             var requestToken = tokenResponse.Token;
             _ticket.AccessToken = requestToken.Key;
             _ticket.AccessTokenSecret = requestToken.Secret;
+            SetProperties(_ticket, _useDemo);
             return _ticket;
         }
 
@@ -80,10 +76,12 @@ namespace FellowshipOne.Api {
         public void UpdateTokens(string accessToken, string accessTokenSecret) {
             _ticket.AccessToken = accessToken;
             _ticket.AccessTokenSecret = accessTokenSecret;
+            SetProperties(_ticket, _useDemo);
         }
 
         public void UpdateChurchCode(string churchCode) {
             _ticket.ChurchCode = churchCode;
+            SetProperties(_ticket, _useDemo);
         }
 
         //public static F1OAuthTicket Authorize(F1OAuthTicket ticket, string username, string password, LoginType loginType, bool isStaging = false)
@@ -126,6 +124,11 @@ namespace FellowshipOne.Api {
         //    return ticket;
         //}
 
+            private void SetBaseUrl() {
+            var baseUrl = _isStaging ? string.Format("https://{0}.staging.fellowshiponeapi.com/", _ticket.ChurchCode) : string.Format("https://{0}.fellowshiponeapi.com/", _ticket.ChurchCode);
+            _baseUrl = baseUrl;
+        }
+
         private static String SecureStringToString(SecureString value)
         {
             IntPtr bstr = Marshal.SecureStringToBSTR(value);
@@ -140,10 +143,11 @@ namespace FellowshipOne.Api {
             }
         }
 
-        private void SetProperties(F1OAuthTicket ticket, bool useDemo, string baseUrl) {
+        private void SetProperties(F1OAuthTicket ticket, bool useDemo) {
             _ticket = ticket;
             _useDemo = useDemo;
-            //PeopleRealm = new Realms.Person(ticket, baseUrl);
+            SetBaseUrl();
+            PeopleRealm = new Realms.Person(ticket, _baseUrl);
             //GivingRealm = new Realms.Giving(ticket, baseUrl);
             //ActivitiesRealm = new Realms.F1Activities(ticket, baseUrl);
             //GroupRealm = new Realms.GroupsRealm(ticket, baseUrl);
