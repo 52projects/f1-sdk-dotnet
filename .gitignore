@@ -1,6 +1,7 @@
-# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-[Bb]in/
-[Oo]bj/
+# dont ignore
+!Related Assemblies
+!Related Assemblies/*
+!Related Assemblies/fellowshiponeapi-csharp-wrapper-master/FellowshipOne.API/bin/Release
 
 # mstest test results
 TestResults
@@ -36,6 +37,7 @@ x64/
 *.vspscc
 *.vssscc
 .builds
+.vs
 
 # Visual C++ cache files
 ipch/
@@ -118,8 +120,6 @@ Backup*/
 UpgradeLog*.XML
 *.DS_Store
 
-web/MissionTrips.Web/config.codekit
-web/MissionTrips.Web/assets/css/.sass-cache/1afcc90758de4e8aa0352fcc531be4f394df7b15/theme-default.scssc
 
 *.suo
 *.pdb
@@ -127,3 +127,17 @@ web/MissionTrips.Web/assets/css/.sass-cache/1afcc90758de4e8aa0352fcc531be4f394df
 *.dacpac
 *.dbmdl
 *.orig
+.sass-cache
+.DS_Store
+
+#ignore random dbproject files
+*.jfm
+
+*.appSettings_local_Prod.config
+*.appSettings_local_Stag.config
+*.connstrings_local_Prod.config
+*.connstrings_local_Stag.config
+**/node_modules
+
+connstrings_local_Stag.config
+appSettings_local_Stag.config
