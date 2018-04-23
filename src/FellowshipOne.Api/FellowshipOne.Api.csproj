@@ -84,6 +84,7 @@
     <Compile Include="Activities\Sets\Schedules.cs" />
     <Compile Include="Bases\BaseClient.cs" />
     <Compile Include="Bases\OAuthTicket.cs" />
+    <Compile Include="Extensions\RestSharpExtensions.cs" />
     <Compile Include="Giving\Model\ContributionSubType.cs" />
     <Compile Include="Giving\Sets\ContributionSubTypes.cs" />
     <Compile Include="Giving\Sets\ContributionTypes.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Groups\Sets\Groups.cs" />
     <Compile Include="Groups\Sets\GroupTypes.cs" />
     <Compile Include="Groups\Sets\Members.cs" />
+    <Compile Include="Model\FellowshipOneResponse.cs" />
     <Compile Include="People\Model\Account.cs" />
     <Compile Include="People\Model\School.cs" />
     <Compile Include="People\Sets\Accounts.cs" />

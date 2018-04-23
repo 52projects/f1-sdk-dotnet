@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FellowshipOne.Api.Giving.Model;
-
+using FellowshipOne.Api.Model;
 using RestSharp;
 
 namespace FellowshipOne.Api.Giving.Sets {
@@ -25,13 +25,13 @@ namespace FellowshipOne.Api.Giving.Sets {
         protected override string EditUrl { get { return EDIT_URL; } }
         protected override string GetChildListUrl { get { return GET_CHILD_LIST_URL; } }
 
-        public bool CreateReferenceImage(byte[] stream, int? rdcBatchItemID) {
+        public IFellowshipOneResponse CreateReferenceImage(byte[] stream, int? rdcBatchItemID) {
             var url = string.Format(_baseUrl + CREATE_REFERENCE_IMAGE_URL, rdcBatchItemID);
             var result = base.Create(stream, url);
             return result;
         }
 
-        public List<RDCBatchItem> GetListByBatchId(int batchID) {
+        public IFellowshipOneResponse<List<RDCBatchItem>> GetListByBatchId(int batchID) {
             return base.List(batchID.ToString());
         }
     }

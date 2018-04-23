@@ -20,7 +20,7 @@ namespace FellowshipOne.Api.Tests.Groups {
         [Test]
         public void tests_groups_grouptypes_list_all() {
             var groupTypes = this.RestClient.GroupRealm.GroupTypes.List();
-            groupTypes.Count.ShouldBeGreaterThan(0);
+            groupTypes.Data.Count.ShouldBeGreaterThan(0);
         }
     }
 }

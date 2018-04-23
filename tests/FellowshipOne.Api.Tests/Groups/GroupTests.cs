@@ -20,8 +20,8 @@ namespace FellowshipOne.Api.Tests.Groups {
         [Test]
         public void tests_groups_groups_list_all() {
             var groupTypes = this.RestClient.GroupRealm.GroupTypes.List();
-            var groups = this.RestClient.GroupRealm.Groups.List(groupTypes.First().ID.ToString());
-            groups.Count.ShouldBeGreaterThan(0);
+            var groups = this.RestClient.GroupRealm.Groups.List(groupTypes.Data.First().ID.ToString());
+            groups.Data.Count.ShouldBeGreaterThan(0);
         }
     }
 }

@@ -39,13 +39,13 @@ namespace FellowshipOne.Api.Tests.Giving {
             };
 
             var batches = _client.GivingRealm.Batches.Search<BatchSearchResults>(batchQO);
-            batches.PageNumber.ShouldBe(1);
+            batches.Data.PageNumber.ShouldBe(1);
         }
 
         [Test]
         public void GetRdcBatchByBatchID() {
             var rdcBatch = _client.GivingRealm.RDCBatches.Get("1518983");
-            rdcBatch.Name.ShouldBe("Test RDC Batch May 16 2012 10:53AM");
+            rdcBatch.Data.Name.ShouldBe("Test RDC Batch May 16 2012 10:53AM");
         }
 
         [Test]
@@ -57,8 +57,8 @@ namespace FellowshipOne.Api.Tests.Giving {
 
             var batches = _client.GivingRealm.Batches.Search<BatchSearchResults>(batchQO);
 
-            var rdcBatchItems = _client.GivingRealm.RDCBatchItems.GetListByBatchId(batches[0].ID.GetValueOrDefault());
-            rdcBatchItems.Count.ShouldBeGreaterThan(0);
+            var rdcBatchItems = _client.GivingRealm.RDCBatchItems.GetListByBatchId(batches.Data[0].ID.GetValueOrDefault());
+            rdcBatchItems.Data.Count.ShouldBeGreaterThan(0);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace FellowshipOne.Api.Tests.Giving {
             var person = _client.PeopleRealm.People.Get("33175804");
 
             var rdcBatchItem = _client.GivingRealm.RDCBatchItems.Get("2");
-            rdcBatchItem.ReferenceNumber = "T:0C38BWZ7w";
+            rdcBatchItem.Data.ReferenceNumber = "T:0C38BWZ7w";
         }
 
         [Test]

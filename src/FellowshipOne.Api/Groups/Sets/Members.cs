@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.Groups.Sets {
     public class Members : ApiSet<Model.Member> {
@@ -24,7 +25,7 @@ namespace FellowshipOne.Api.Groups.Sets {
             }
         }
 
-        public Model.Member Create(int groupID, Model.Member member) {
+        public IFellowshipOneResponse<Model.Member> Create(int groupID, Model.Member member) {
             _createUrl = string.Format(LIST_URL, groupID);
             return base.Create(member);
         }

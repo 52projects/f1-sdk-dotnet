@@ -19,7 +19,7 @@ namespace FellowshipOne.Api.Tests.People {
             qo.RecordsPerPage = 5;
             qo.IncludeAddress = true;
 
-            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
+            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo).Data;
             people.ShouldNotBe(null);
             people.Count.ShouldBeGreaterThan(0);
         }
@@ -34,7 +34,7 @@ namespace FellowshipOne.Api.Tests.People {
 
             var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
             people.ShouldNotBe(null);
-            people.Count.ShouldBeGreaterThan(0);
+            people.Data.Count.ShouldBeGreaterThan(0);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace FellowshipOne.Api.Tests.People {
             string requestXml = string.Empty;
 
             try {
-                person = RestClient.PeopleRealm.People.Create(person, out requestXml);
+                person = RestClient.PeopleRealm.People.Create(person, out requestXml).Data;
             }
             catch (System.Exception e) {
             }
@@ -60,7 +60,7 @@ namespace FellowshipOne.Api.Tests.People {
             qo.Name = "chad meyer";
             qo.RecordsPerPage = 5;
 
-            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo);
+            var people = RestClient.PeopleRealm.People.Search<FellowshipOne.Api.People.Model.PersonCollection>(qo).Data;
             var person = people[0];
             person.Status.SubStatuses = null;
             person.Addresses = null;

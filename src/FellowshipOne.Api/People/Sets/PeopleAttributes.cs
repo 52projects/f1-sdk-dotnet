@@ -1,11 +1,9 @@
-﻿
+﻿using FellowshipOne.Api.People.Model;
 using RestSharp;
-using System.Collections.Generic;
-using FellowshipOne.Api.People.Model;
 using System.IO;
-using System.Xml.Serialization;
-using System;
 using System.Text;
+using System.Xml.Serialization;
+using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.People.Sets {
     public class PeopleAttributes : ApiSet<PersonAttribute> {
@@ -37,17 +35,17 @@ namespace FellowshipOne.Api.People.Sets {
             }
         }
 
-        public PersonAttribute CreateForPerson(int personID, Model.PersonAttribute entity, out string requestXml) {
+        public IFellowshipOneResponse<PersonAttribute> CreateForPerson(int personID, Model.PersonAttribute entity, out string requestXml) {
             this._createUrl = string.Format(CREATE_PERSON_ATTRIBUTE_URL, personID);
             return Create(entity, out requestXml);
         }
 
-        public PersonAttribute UpdateForPerson(int personID, Model.PersonAttribute entity) {
+        public IFellowshipOneResponse<PersonAttribute> UpdateForPerson(int personID, Model.PersonAttribute entity) {
             this._editUrl = string.Format(EDIT_URL, personID, entity.APIModelID);
             return Update(entity, entity.APIModelID);
         }
 
-        public bool DeleteForPerson(int personID, Model.PersonAttribute entity) {
+        public IFellowshipOneResponse DeleteForPerson(int personID, Model.PersonAttribute entity) {
             this._editUrl = string.Format(EDIT_URL, personID, entity.APIModelID);
             return Delete(entity.APIModelID);
         }

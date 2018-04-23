@@ -1,4 +1,4 @@
-﻿
+﻿using FellowshipOne.Api.Model;
 
 namespace FellowshipOne.Api.Activities.Sets {
     public class Assignments : ApiSet<Model.Assignment> {
@@ -21,17 +21,17 @@ namespace FellowshipOne.Api.Activities.Sets {
         protected override string GetChildUrl { get { return GET_URL; } }
         protected override string GetUrl { get { return GET_URL; } }
 
-        public Model.Assignment Create(int activityID, Model.Assignment entity) {
+        public IFellowshipOneResponse<Model.Assignment> Create(int activityID, Model.Assignment entity) {
             _createUrl = string.Format(LIST_URL, activityID);
             return Create(entity, _createUrl);
         }
 
-        public Model.Assignment Create(int activityID, Model.Assignment entity, out string requestXml) {
+        public IFellowshipOneResponse<Model.Assignment> Create(int activityID, Model.Assignment entity, out string requestXml) {
             _createUrl = string.Format(LIST_URL, activityID);
             return Create(entity, out requestXml);
         }
 
-        public bool Delete(int activityID, int assignmentID) {
+        public IFellowshipOneResponse Delete(int activityID, int assignmentID) {
             _editUrl = string.Format(GET_URL, activityID, assignmentID);
             return Delete(assignmentID.ToString());
         }

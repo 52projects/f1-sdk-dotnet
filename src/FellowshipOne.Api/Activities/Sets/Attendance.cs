@@ -31,19 +31,19 @@ namespace FellowshipOne.Api.Activities.Sets {
             return base.FindAll(page);
         }
 
-        public Model.Attendance Create(int activityID, int instanceID, Model.Attendance entity) {
+        public IFellowshipOneResponse<Model.Attendance> Create(int activityID, int instanceID, Model.Attendance entity) {
             _createUrl = string.Format(LIST_URL, activityID, instanceID);
             return Create(entity);
         }
 
-        public Model.Attendance Update(Model.Attendance entity) {
+        public IFellowshipOneResponse<Model.Attendance> Update(Model.Attendance entity) {
             _editUrl = string.Format(EDIT_URL, entity.Activity.ID, entity.Instance.ID, entity.ID);
             return Update(entity, entity.ID.ToString());
         }
 
-        public void Delete(int activityID, int instanceID, int attendanceID) {
+        public IFellowshipOneResponse Delete(int activityID, int instanceID, int attendanceID) {
             _editUrl = string.Format(EDIT_URL, activityID, instanceID, attendanceID);
-            base.Delete(attendanceID.ToString());
+            return base.Delete(attendanceID.ToString());
         }
     }
 }

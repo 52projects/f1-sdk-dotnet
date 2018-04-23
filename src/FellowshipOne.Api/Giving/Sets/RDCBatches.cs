@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FellowshipOne.Api.Model;
 
 
 namespace FellowshipOne.Api.Giving.Sets {
@@ -17,7 +18,7 @@ namespace FellowshipOne.Api.Giving.Sets {
         protected override string EditUrl { get { return EDIT_URL; } }
         protected override string GetChildListUrl { get { return GET_CHILD_LIST_URL; } }
 
-        public Model.RDCBatch GetByBatchID(int batchID) {
+        public IFellowshipOneResponse<Model.RDCBatch> GetByBatchID(int batchID) {
             return base.Get(batchID.ToString());
         }
     }

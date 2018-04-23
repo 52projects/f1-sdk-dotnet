@@ -19,7 +19,7 @@ namespace FellowshipOne.Api.People.Sets {
         #endregion Properties
 
         #region Methods
-        public ChurchConfig Get() {
+        public IFellowshipOneResponse<ChurchConfig> Get() {
             return base.Get(string.Empty);
         }
         #endregion
