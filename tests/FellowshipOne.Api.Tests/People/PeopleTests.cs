@@ -13,6 +13,12 @@ namespace FellowshipOne.Api.Tests.People {
         }
 
         [Test]
+        public void people_get() {
+            var person = RestClient.PeopleRealm.People.Get(_testIndividualID.ToString());
+            person.ShouldNotBe(null);
+        }
+
+        [Test]
         public void people_search() {
             var qo = new PeopleQO();
             qo.Name = "rachel stewart";

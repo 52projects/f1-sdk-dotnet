@@ -435,25 +435,13 @@ namespace FellowshipOne.Api {
             }
             var response = client.Execute<T>(request);
 
-            if ((int)response.StatusCode >= 400) {
-                throw new ApiAccessException(response.Content) {
-                    StatusCode = response.StatusCode,
-                    StatusDescription = response.StatusDescription,
-                    RequestUrl = response.ResponseUri.AbsoluteUri
-                };
-            }
-
-            if ((int)response.StatusCode >= 300) {
+            if ((int)response.StatusCode >= 300 && (int)response.StatusCode < 400) {
                 var location = response.Headers.SingleOrDefault(x => x.Name == "Location");
 
                 if (location != null) {
                     request = CreateRestRequest(Method.GET, location.Value.ToString().Substring(_baseUrl.Length));
                     response = ExecuteRequest(request);
                 }
-            }
-
-            if (!string.IsNullOrEmpty(response.ErrorMessage)) {
-                throw new ApiAccessException(response.ErrorMessage);
             }
 
             return response;
@@ -468,14 +456,6 @@ namespace FellowshipOne.Api {
             }
             var response = client.Execute(request);
 
-            if ((int)response.StatusCode > 300) {
-                throw new ApiAccessException(response.StatusDescription) {
-                    StatusCode = response.StatusCode,
-                    StatusDescription = response.StatusDescription,
-                    RequestUrl = response.ResponseUri.AbsoluteUri
-                };
-            }
-
             return response;
         }
 
@@ -488,14 +468,6 @@ namespace FellowshipOne.Api {
             }
             var response = client.Execute<S>(request);
 
-            if ((int)response.StatusCode > 300) {
-                throw new ApiAccessException(response.ErrorException != null ? response.ErrorException.Message : "API Access Exception") {
-                    StatusCode = response.StatusCode,
-                    StatusDescription = response.StatusDescription,
-                    RequestUrl = response.ResponseUri.AbsoluteUri
-                };
-            }
-
             return response;
         }
 
@@ -507,14 +479,6 @@ namespace FellowshipOne.Api {
                 client.Authenticator = OAuth1Authenticator.ForProtectedResource(_ticket.ConsumerKey, _ticket.ConsumerSecret, _ticket.AccessToken, _ticket.AccessTokenSecret);
             }
             var response = client.Execute<List<T>>(request);
-
-            if ((int)response.StatusCode > 300) {
-                throw new ApiAccessException(response.StatusDescription) {
-                    StatusCode = response.StatusCode,
-                    StatusDescription = response.StatusDescription,
-                    RequestUrl = response.ResponseUri.AbsoluteUri
-                };
-            }
 
             return response;
         }

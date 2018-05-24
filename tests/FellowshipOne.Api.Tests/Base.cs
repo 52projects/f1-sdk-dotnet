@@ -19,8 +19,10 @@ namespace FellowshipOne.Api.Tests {
                 AccessTokenSecret = ""
             };
 
-            RestClient = new RestClient(this.Ticket, false);
-            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["Church.Code"], ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], "v1/PortalUser/AccessToken");
+            var isStaging = bool.Parse(ConfigurationManager.AppSettings["FellowshipOne.Is.Staging"]);
+
+            RestClient = new RestClient(this.Ticket, isStaging);
+            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["Church.Code"], ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], "v1/PortalUser/AccessToken", isStaging);
 
             this.Ticket.AccessToken = oauth.AccessToken;
             this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;
