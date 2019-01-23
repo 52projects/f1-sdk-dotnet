@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FellowshipOne.Api.Model;
 using System.Xml;
 using System.Xml.Serialization;
+using FellowshipOne.Api.People.Enum.CommunicationTypes;
 
 namespace FellowshipOne.Api.People.Model {
     [Serializable]
@@ -538,10 +539,14 @@ namespace FellowshipOne.Api.People.Model {
         public string Email {
             get {
                 if (_email == null && this.Communications != null && this.Communications.Count > 0) {
-                    var comm = this.Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)FellowshipOne.Api.People.Enum.CommunicationTypes.Email.Email);
-
-                    if (comm != null) {
-                        _email = comm.CommunicationValue;
+                    if (Communications.Any(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.InfellowshipLogin)) {
+                        _email = Communications.First(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.InfellowshipLogin).CommunicationValue;
+                    }
+                    else if (Communications.Any(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.Email)) {
+                        _email = Communications.First(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.Email).CommunicationValue;
+                    }
+                    else if (Communications.Any(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.HomeEmail)) {
+                        _email = Communications.First(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.HomeEmail).CommunicationValue;
                     }
                 }
 

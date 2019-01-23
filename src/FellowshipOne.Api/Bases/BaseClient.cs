@@ -4,9 +4,9 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Collections.Generic;
-using RestSharp.Extensions.MonoHttp;
 using FellowshipOne.Api.Exceptions;
 using Newtonsoft.Json.Linq;
+using System.Web;
 
 namespace FellowshipOne.Api {
     public class BaseClient {
@@ -184,7 +184,7 @@ namespace FellowshipOne.Api {
                 };
             }
             else {
-                var qs = RestSharp.Extensions.MonoHttp.HttpUtility.ParseQueryString(response.Content);
+                var qs = HttpUtility.ParseQueryString(response.Content);
                 ticket.AccessToken = qs["oauth_token"];
                 ticket.AccessTokenSecret = qs["oauth_token_secret"];
 

@@ -7,10 +7,9 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-
+using System.Web;
 using System.Security;
 using System.Runtime.InteropServices;
-using RestSharp.Extensions.MonoHttp;
 
 namespace FellowshipOne.Api {
     public class RestClient : BaseClient {

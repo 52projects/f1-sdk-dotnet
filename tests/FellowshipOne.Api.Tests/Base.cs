@@ -12,22 +12,22 @@ namespace FellowshipOne.Api.Tests {
         [OneTimeSetUp]
         public void Setup() {
             this.Ticket = new F1OAuthTicket {
-                ConsumerKey = ConfigurationManager.AppSettings["Consumer.Key"],
-                ConsumerSecret =  ConfigurationManager.AppSettings["Consumer.Secret"],
-                ChurchCode = ConfigurationManager.AppSettings["Church.Code"],
+                ConsumerKey = "",
+                ConsumerSecret = "",
+                ChurchCode = "",
                 AccessToken = "",
                 AccessTokenSecret = ""
             };
 
-            var isStaging = bool.Parse(ConfigurationManager.AppSettings["FellowshipOne.Is.Staging"]);
+            var isStaging = false;
 
             RestClient = new RestClient(this.Ticket, isStaging);
-            var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["Church.Code"], ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], "v1/PortalUser/AccessToken", isStaging);
+            //var oauth = RestClient.AuthorizeWithCredentials(this.Ticket, ConfigurationManager.AppSettings["Church.Code"], ConfigurationManager.AppSettings["UserName"],  ConfigurationManager.AppSettings["Password"], "v1/PortalUser/AccessToken", isStaging);
 
-            this.Ticket.AccessToken = oauth.AccessToken;
-            this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;
+            //this.Ticket.AccessToken = oauth.AccessToken;
+            //this.Ticket.AccessTokenSecret = oauth.AccessTokenSecret;
 
-            _testIndividualID = int.Parse(ConfigurationManager.AppSettings["Test.Individual.ID"]);
+            // _testIndividualID = int.Parse(ConfigurationManager.AppSettings["Test.Individual.ID"]);
         }
     }
 }

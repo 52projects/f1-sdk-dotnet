@@ -40,9 +40,8 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp">
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,6 +84,7 @@
     <Compile Include="Bases\BaseClient.cs" />
     <Compile Include="Bases\OAuthTicket.cs" />
     <Compile Include="Extensions\RestSharpExtensions.cs" />
+    <Compile Include="Giving\Enum\FundType.cs" />
     <Compile Include="Giving\Model\ContributionSubType.cs" />
     <Compile Include="Giving\Sets\ContributionSubTypes.cs" />
     <Compile Include="Giving\Sets\ContributionTypes.cs" />

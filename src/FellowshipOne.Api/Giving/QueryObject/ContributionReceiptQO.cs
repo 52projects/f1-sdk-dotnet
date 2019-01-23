@@ -1,5 +1,6 @@
 ﻿
 using FellowshipOne.Api.Attributes;
+using FellowshipOne.Api.Giving.Enum;
 using System;
 
 
@@ -19,5 +20,11 @@ namespace FellowshipOne.Api.Giving.QueryObject {
 
         [QO("endReceivedDate")]
         public DateTime? EndReceivedDate { get; set; }
+
+        [QO("lastupdatedDate")]
+        public DateTime? LastUpdatedDate { get; set; }
+
+        [QO("fundTypeID")]
+        public FundType? FundType { get; set; }
     }
 }
