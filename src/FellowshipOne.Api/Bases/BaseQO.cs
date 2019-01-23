@@ -45,6 +45,9 @@ namespace FellowshipOne.Api {
                                 string format = GetFormat(p);
                                 ret.Add(GetKey(p), d.Value.ToString(format == null ? "yyyy-MM-dd" : format));
                             }
+                            else if (value is Enum) {
+                                ret.Add(GetKey(p), ((int)value).ToString());
+                            }
                             else {
                                 ret.Add(GetKey(p), value.ToString());
                             }
