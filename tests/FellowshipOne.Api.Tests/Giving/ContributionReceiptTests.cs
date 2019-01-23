@@ -18,12 +18,12 @@ namespace FellowshipOne.Api.Tests.Giving {
         public void SetupClient() {
             var oAuth = RestClient.Authorize(
                 new F1OAuthTicket() {
-                    ConsumerKey = "498",
-                    ConsumerSecret = "f4d4d5ff-d347-4c44-a72e-65b0bcdeeb91",
-                    ChurchCode = "MEETINGHOUSE"
+                    ConsumerKey = "",
+                    ConsumerSecret = "",
+                    ChurchCode = ""
                 },
-                "rmeredith",
-                "M33tingHouse@&))",
+                "",
+                "",
                 LoginType.PortalUser,
                 false
             );
