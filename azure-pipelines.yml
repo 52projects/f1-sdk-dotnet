@@ -20,3 +20,16 @@ steps:
     command: 'build'
     projects: 'FellowshipOne.Api.NetCore.sln'
     arguments: '--configuration Release'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/FellowshipOne.Api.csproj'
+    versioningScheme: 'byBuildNumber'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'db583f8b-76b5-46cd-bd05-c980b090eb5b'
