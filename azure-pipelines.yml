@@ -26,9 +26,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/FellowshipOne.Api.csproj'
+    packagesToPack: '**/FellowshipOne.Api.NetCore.csproj'
     versioningScheme: 'byBuildNumber'
-    buildProperties: '-p:PackageId=FellowshipOne.Api.NetCore'
 
 - task: NuGetCommand@2
   inputs:
