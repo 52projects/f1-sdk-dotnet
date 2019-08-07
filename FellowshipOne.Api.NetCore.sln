@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D13E4BCB-280D-4355-8491-B4D724A73514}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{842B96CD-8A36-4B2A-AF75-4BE118FBEABD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FellowshipOne.Api", "src\FellowshipOne.Api\FellowshipOne.Api.csproj", "{5E6B66F6-6AF2-4378-A6E8-EDB4752B9215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FellowshipOne.Api.NetCore", "src\FellowshipOne.Api\FellowshipOne.Api.NetCore.csproj", "{5E6B66F6-6AF2-4378-A6E8-EDB4752B9215}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FellowshipOne.Api.Tests", "tests\FellowshipOne.Api.Tests\FellowshipOne.Api.Tests.csproj", "{916C2101-CE66-430D-B935-4D9B49E2275D}"
 EndProject
