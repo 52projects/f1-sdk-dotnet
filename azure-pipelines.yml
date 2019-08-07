@@ -28,6 +28,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/FellowshipOne.Api.csproj'
     versioningScheme: 'byBuildNumber'
+    buildProperties: '-p:PackageId:FellowshipOne.Api.NetCore'
 
 - task: NuGetCommand@2
   inputs:
