@@ -23,7 +23,7 @@ steps:
     projects: 'FellowshipOne.Api.NetCore.sln'
     arguments: '--configuration Release'
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
     packagesToPack: '**/FellowshipOne.Api.csproj'
