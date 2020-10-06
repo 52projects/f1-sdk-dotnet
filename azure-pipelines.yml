@@ -12,7 +12,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/FellowshipOne.Api.sln'
+  solution: '**/FellowshipOne.Api.NetCore.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -38,7 +38,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/src/FellowshipOne.Api/FellowshipOne.Api.csproj'
+    packagesToPack: '**/src/FellowshipOne.Api/FellowshipOne.Api.NetCore.csproj'
     versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
