@@ -539,19 +539,31 @@ namespace FellowshipOne.Api.People.Model {
         public string Email {
             get {
                 if (_email == null && this.Communications != null && this.Communications.Count > 0) {
-                    if (Communications.Any(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.InfellowshipLogin)) {
-                        _email = Communications.First(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.InfellowshipLogin).CommunicationValue;
-                    }
-                    else if (Communications.Any(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.Email)) {
-                        _email = Communications.First(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.Email).CommunicationValue;
-                    }
-                    else if (Communications.Any(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.HomeEmail)) {
-                        _email = Communications.First(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.HomeEmail).CommunicationValue;
-                    }
+                    _email = GetDefaultEmailValue();
                 }
 
                 return _email;
             }
+        }
+
+        private string GetDefaultEmailValue() {
+            var emails = new List<int> { (int)Enum.CommunicationTypes.Email.Email, (int)Enum.CommunicationTypes.Email.HomeEmail };
+            var comm = Communications.FirstOrDefault(x => x.Preferred.GetValueOrDefault(false) && emails.Contains(x.CommunicationType.ID.Value));
+            if (comm != null) {
+                return comm.CommunicationValue;
+            }
+
+            comm = Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.Email);
+            if (comm != null) {
+                return comm.CommunicationValue;
+            }
+
+            comm = Communications.FirstOrDefault(x => x.CommunicationType.ID == (int)Enum.CommunicationTypes.Email.HomeEmail);
+            if (comm != null) {
+                return comm.CommunicationValue;
+            }
+
+            return string.Empty;
         }
 
         #endregion Public Properties
