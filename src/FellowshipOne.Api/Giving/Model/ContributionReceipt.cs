@@ -26,6 +26,10 @@ namespace FellowshipOne.Api.Giving.Model {
             this.ContributionSubType = new ParentNamedObject();
             this.CreatedByPerson = new ParentObject();
             this.LastUpdatedByPerson = new ParentObject();
+
+            CustomerOrderId = string.Empty;
+            ExternalTransactionId = string.Empty;
+            OrderId = string.Empty;
         }
         #endregion Constructor
 
@@ -421,6 +425,15 @@ namespace FellowshipOne.Api.Giving.Model {
 
         [XmlElement("lastUpdatedByPerson")]
         public ParentObject LastUpdatedByPerson { get; set; }
+
+        [XmlElement("externalTransactionId")]
+        public string ExternalTransactionId { get; set; }
+
+        [XmlElement("customerOrderId")]
+        public string CustomerOrderId { get; set; }
+
+        [XmlElement("orderId")]
+        public string OrderId { get; set; }
 
         #endregion Properties
     }
